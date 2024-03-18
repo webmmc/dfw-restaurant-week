@@ -1,0 +1,23 @@
+.wrapper {
+  position: relative;
+  padding-bottom: 75%;
+  width: 100%;
+}
+
+.image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 25%;
+}
+
+.outer {
+  padding: 0;
+}
+
+.desc {
+  padding: 0.5rem 1rem;
+}

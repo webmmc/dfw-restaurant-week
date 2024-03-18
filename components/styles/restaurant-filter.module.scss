@@ -1,0 +1,201 @@
+$red: #da3743;
+$gray: #b1b1b1;
+
+.header {
+  position: relative;
+}
+
+.selection_filter {}
+
+.line {
+  background: $gray;
+  height: 2px;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.icon {
+  width: 50px;
+  height: 30px;
+  position: relative;
+  background: #fff;
+}
+
+.headline {
+  font-size: 0.8rem !important;
+  // color: $gray;
+  background: #fff;
+  position: relative;
+  padding: 0 0.5rem;
+}
+
+.subhead {
+  color: $red;
+  font-size: 1.334rem !important;
+  margin-left: auto;
+  margin-right: 0;
+  background: #fff;
+  position: relative;
+  padding: 0 0.5rem;
+  line-height: 1;
+}
+
+
+.dining_item {
+  padding-bottom: 66%;
+  position: relative;
+
+  @media(min-width: 1024px) {
+    padding-bottom: 66%;
+  }
+
+}
+
+.dining_label {
+  cursor: pointer;
+}
+
+.dining_img {}
+
+.dining_input {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  font-size: 0.8rem;
+  text-decoration: underline !important;
+  text-decoration-color: #da3743 !important;
+  cursor: pointer;
+
+
+  @media(max-width: 1023px) {
+    background: #fffd;
+  }
+
+  &:hover {
+    background: #fff;
+  }
+}
+
+.dining_input_text {}
+
+
+.expand_arrow {
+  transform: rotate(180deg);
+  font-size: 0.8rem;
+  display: inline-block;
+  position: relative;
+  right: -0.1rem;
+  top: -0.15rem;
+}
+
+.expanded_filters {
+  box-shadow: 0 10px 10px 0px rgba(0, 0, 0, 0.15);
+  border: 1px solid #ddd;
+}
+
+
+.fill_list_button_width {
+  min-width: 200px;
+}
+
+.filter_list {
+  background: white;
+  padding-right: 5%;
+}
+
+.cuisines {
+  // @media(min-width: 1024px){
+  columns: 2;
+  // }
+}
+
+.line_height {
+  line-height: 1.15;
+  cursor: pointer;
+
+  @media(min-width: 1024px){
+    white-space: nowrap;
+  }
+
+  &:hover {
+    opacity: 0.667;
+  }
+}
+
+
+.curated_collections {}
+
+.collections_container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.curated_label {
+  cursor: pointer;
+
+  &_text {
+    &:hover {
+      opacity: 0.667;
+    }
+  }
+}
+
+
+
+.results_image {}
+
+.dining_card {
+  padding-bottom: 66%;
+  position: relative;
+
+  @media(min-width: 1024px) {
+    padding-bottom: 66%;
+  }
+}
+
+.dining_card_body {
+  @media(max-width: 1200px) {
+    font-size: 0.8rem;
+
+    span {
+      font-size: 1em;
+    }
+  }
+}
+
+.dining_card_headline {
+  @media(max-width: 1200px) {
+    font-size: 1.2rem !important;
+  }
+}
+
+.dining_card_ad {
+  padding-bottom: 75%;
+  padding-bottom: 125%;
+  // height: 100%;
+}
+
+.filterMaxWidth{
+    max-width: 66rem;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+.forkButton{
+  width: 28px;
+  height: 35px;
+
+  @media(max-width: 1200px) {
+    width: 28px;
+    height: 28px;
+  }
+  @media(max-width: 650px) {
+    width: 20px;
+    height: 28px;
+  }
+}

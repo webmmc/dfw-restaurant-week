@@ -1,0 +1,11 @@
+.content {
+  padding-top: 8rem;
+
+  @media(max-width: 799px) {
+    padding-top: 13rem;
+  }
+
+  @media(max-width: 499px) {
+    padding-top: 11rem;
+  }
+}

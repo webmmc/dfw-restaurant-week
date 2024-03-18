@@ -1,0 +1,536 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,700;0,800;1,400&family=Pinyon+Script&display=swap');
+
+$red: #da3743;
+$gray: #b1b1b1;
+
+
+body,
+h1,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+h1,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+
+body {
+  // font-size: 0.825rem !important; /* 14px */
+  font-size: 1rem;
+
+  @media(min-width: 1400px){
+    font-size: 1.2rem;
+  }
+  // Removed per Patrick (designer), who felt all font sizes seemed to small.
+}
+
+h1 {
+  font-size: 2.666rem !important;
+}
+
+h2 {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 2.3335rem !important;
+  text-transform: lowercase;
+}
+
+h3 {
+  font-size: 1.5rem !important;
+  /*21px */
+}
+
+h4 {
+  font-size: 1rem !important;
+}
+
+
+.font-sm {
+  font-size: 0.85714rem !important;
+  /* 12px */
+}
+
+.font-m {
+  font-size: 0.9375rem !important;
+  /* 15px */
+}
+
+.font-l {
+  font-size: 1rem !important;
+  /* 16px */
+}
+
+.font-xl {
+  font-size: 1.125rem !important;
+  /* 18px */
+}
+
+
+p a {
+  text-decoration: underline !important;
+  text-decoration-color: #da3743 !important;
+  transition: all 0.15s;
+  display: inline-block;
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+}
+
+
+a {
+  &:focus {
+    outline: 2px solid $red;
+  }
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+p+.site-btn {
+  margin-bottom: 1rem
+}
+
+hr {
+  color: $gray;
+  margin: 1rem auto;
+  mix-blend-mode: multiply;
+  border-top-width: 2px;
+}
+
+.site-border {
+  border: 2px solid $gray;
+}
+
+
+.site-btn {
+  font-size: 1rem;
+  font-weight: 400;
+  border: 1px solid currentColor;
+  padding: 0.334em 0.667em;
+  transition: all 0.25s;
+  display: inline-block;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  &:focus,
+  &:hover {
+    color: white;
+    border-color: $red;
+    background-color: $red;
+  }
+
+  &--primary {
+    background: black;
+    color: white;
+    border-color: white;
+  }
+
+  &--secondary {
+    background: white;
+    color: $red;
+    border-color: $gray;
+  }
+
+  &--text {
+    border: none;
+
+    &:focus,
+    &:hover {
+      background: transparent;
+      border-color: transparent;
+      color: $red;
+    }
+  }
+
+  &--small-on-mobile {
+    line-height: 1.1;
+    @media(max-width: 1200px) {
+      font-size: 0.75rem;
+      line-height: 1.15;
+    }
+  }
+}
+
+
+.content__inner a img,
+.larger-link {
+  transition: all 0.25s;
+
+  &:hover {
+    transform: translateY(-0.25rem) !important;
+    box-shadow: 0 10px 10px -2px rgba(0, 0, 0, 0.15);
+  }
+
+  &--noshadow {
+    &:hover {
+      transform: translateY(-0.25rem) !important;
+      box-shadow: none;
+    }
+  }
+}
+
+.content__inner {
+  ul {
+    list-style: initial;
+
+    li {
+      margin-left: 2rem;
+    }
+  }
+
+  iframe {
+    max-width: 100%;
+    max-height: 50vw;
+  }
+}
+
+.color-black {
+  color: #000;
+}
+
+.color-red {
+  color: $red;
+}
+
+.border-red {
+  border-color: $red;
+}
+
+.background-red {
+  background-color: $red;
+}
+
+.color-hover-red:focus .color-hover-red:hover {
+  color: $red;
+}
+
+.background-hover-red:focus,
+.background-hover-red:hover {
+  background-color: $red;
+}
+
+.has-gray-color,
+.color-gray {
+  color: $gray;
+}
+
+.border-gray {
+  border-color: $gray;
+}
+
+.has-gray-background-color,
+.background-gray {
+  background-color: $gray;
+}
+
+.color-hover-gray:focus,
+.color-hover-gray:hover {
+  color: $gray;
+}
+
+.background-hover-gray:focus,
+.background-hover-gray:hover {
+  background-color: $gray;
+  ;
+}
+
+
+.has-gray-light-color {
+  color: #ccc;
+}
+
+.has-gray-dark-color {
+  color: #555;
+}
+
+.has-green-color {
+  color: #43da37
+}
+
+.has-dark-blue-color {
+  color: #3743da
+}
+
+.has-blue-color {
+  color: #6688ff
+}
+
+.has-red-color {
+  color: #b71520;
+}
+
+.has-brand-color {
+  color: #da3743;
+}
+
+
+.has-gray-light-background-color {
+  background-color: #ccc;
+}
+
+.has-gray-dark-background-color {
+  background-color: #555;
+}
+
+.has-green-background-color {
+  background-color: #43da37
+}
+
+.has-dark-blue-background-color {
+  background-color: #3743da
+}
+
+.has-blue-background-color {
+  background-color: #6688ff
+}
+
+.has-red-background-color {
+  background-color: #b71520;
+}
+
+.has-brand-background-color {
+  background-color: #da3743;
+}
+
+
+.hamburger-react {
+  position: absolute !important;
+  display: none;
+  z-index: 9998;
+
+  @media(max-width: 499px) {
+    display: block;
+  }
+}
+
+.this--open {
+  transform: translate(0) !important;
+  opacity: 1 !important;
+}
+
+#nav.this--isscrolled {
+
+  @media(min-width: 500px) {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+
+    figure {
+      max-width: 10rem;
+      margin-right: 10rem;
+    }
+
+    #social-icons {
+      display: none;
+    }
+  }
+
+}
+
+
+.large-thank-you {
+  font-size: 6rem !important;
+}
+
+
+
+// HERO CAROUSEL
+#hero-carousel {
+  overflow: hidden;
+
+  .slide {
+    @media(min-width: 1024px) {
+      height: 100%;
+    }
+
+    background: black;
+  }
+
+  .carousel-root,
+  .carousel,
+  .slider-wrapper,
+  .slider,
+  .something {
+    height: 100%;
+  }
+
+  img {
+    transform: translateX(4rem);
+    transition: all 0.75s;
+    opacity: 0;
+  }
+
+  
+
+  .hero-carousel-info {
+    opacity: 0.5;
+    transition: opacity 1.5s, transform 0.5s;
+    transform: translateY(4rem);
+  }
+
+  .slide.previous,
+  .slide.selected {
+    .hero-carousel-info {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    img {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+}
+
+.carousel.carousel-slider .control-arrow:hover {
+  backdrop-filter: blur(5px);
+}
+
+.carousel-status {
+  z-index: 3;
+}
+
+
+.form-check{
+  @media(max-width: 767px){
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    input{
+      margin-top: 0.125rem;
+    }
+  }
+}
+
+.glisten {
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    &:after {
+      animation: glistenAnimation 0.75s forwards;
+    }
+  }
+}
+
+.glisten:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0;
+}
+
+@keyframes glistenAnimation {
+  0% {
+    transform: translateX(-50%);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(50%);
+    opacity: 0;
+  }
+}
+
+.charity_item {
+  display: block;
+}
+
+
+.expanded {
+  height: 0;
+  // opacity: 0;
+  max-height: 0;
+  transition: all 1s;
+  overflow: hidden;
+
+  &.this--expanded {
+    height: auto;
+    opacity: 1;
+    max-height: 1999px;
+  }
+}
+
+.this--itiopen {
+  right: 0 !important;
+  opacity: 1 !important;
+  pointer-events: all !important;
+}
+
+.preloader {
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve"> <circle fill="grey" stroke="none" cx="45" cy="50" r="2"> <animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.1"/> </circle> <circle fill="grey" stroke="none" cx="50" cy="50" r="2"> <animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.2"/> </circle> <circle fill="grey" stroke="none" cx="55" cy="50" r="2"> <animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.3"/> </circle> </svg>');
+}
+
+.desktop-button {
+  @media(min-width: 1024px) {
+    white-space: nowrap;
+  }
+}
+
+
+.embed-close-modal {
+  background: #000;
+  color: #fff;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 14px;
+  right: 11px;
+  font-size: 20px;
+  line-height: 1;
+  border-radius: 50%;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reservation-iframe {
+  min-height: 32rem;
+}
+
+.reservation-iframe--wide {
+  @media(min-width: 1024px) {
+    width: 600px !important;
+  }
+}
+
+
+.embed-holder-styles {
+  max-width: 600px;
+  height: 85%;
+}
+
+.this--highlight {
+  transition: all 0.5;
+  transform: scale(1.25);
+}
+
+.smaller-line-height {
+  line-height: 1.2;
+}
+
+
+
+
+@import 'grid-system.scss'

@@ -1,0 +1,293 @@
+$red: #da3743;
+$gray: #b1b1b1;
+
+
+.hero {
+
+  @media (max-width: 1023px) {
+    display: block;
+  }
+}
+
+
+.carousel {
+  width: 100%;
+  margin-right: 1rem;
+
+
+  @media(max-width: 1023px) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+  &__innerslide {
+    height: 100%;
+    display: flex;
+    padding-top: 3rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.5rem;
+  }
+
+  &__innersliderelative{
+    display: block;
+    padding: 0 !important;
+    position: relative;
+  }
+
+  &__imagewrapper{
+    position: relative;
+    &:before{
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%;
+      height: 2rem;
+      background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);
+      z-index: 1;
+    }
+  }
+
+  &__info {
+    position: absolute;
+    left: 2rem;
+    bottom: 4rem;
+    max-width: 50%;
+    width: 100%;
+    background: #fffa;
+    backdrop-filter: blur(5px);
+    transition: all 0.25s;
+
+    &__l {
+      max-width: 66%;
+      width: 30rem;
+    }
+
+    &__xl {
+      max-width: 75%;
+      width: 40rem;
+    }
+
+    hr {
+      color: #0007;
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 1023px) {
+      max-width: calc(100% - 4rem);
+      bottom: 1rem;
+      left: 2rem;
+      position: relative;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin-top: auto;
+      margin-bottom: 0;
+    }
+  }
+
+  &__inforelative{
+    z-index: 2;
+    display: block;
+    @media(max-width: 1023px ){
+      margin: 2rem 2rem !important;
+      width: calc(100% - 4rem);
+      max-width: 100%;
+    }
+  }
+}
+
+.carousel_reverse {
+  margin-right: 0;
+  margin-left: 1rem;
+
+  @media(max-width: 1023px) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.carousel_simple {
+  margin: 0;
+}
+
+.spacer {
+  // min-height: 500px;
+}
+
+
+.charities {
+  // width: 25%; // original design, seems too tight
+  width: 33%;
+  border: 2px solid $gray;
+  @media (max-width: 1279px) {
+    width: 45%;
+  }
+
+  @media (max-width: 1023px) {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  &__inner {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    padding: 2rem;
+    height: 100%;
+
+    img {
+      height: 4rem;
+      object-fit: contain;
+    }
+
+    @media (max-width: 1023px) {
+      flex-wrap: nowrap;
+      padding: 1rem;
+
+      img {
+        height: 50px;
+
+        @media(max-width: 1023px) {
+          margin-top: 0;
+        }
+      }
+
+      p,
+      hr {
+        width: calc(100% - 2rem);
+        margin-left: auto;
+        margin-right: auto;
+
+        @media(max-width: 1023px) {
+          width: 100%;
+        }
+      }
+    }
+
+
+
+
+  }
+
+  &__title {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    font-size: 1.6rem !important;
+    line-height: 1.6rem;
+    top: -0.8rem !important;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    color: $gray;
+  }
+
+
+}
+
+.charitiesCarousel{
+    @media(max-width: 1536px){
+        font-size: 0.8rem;
+    }
+}
+
+
+.this__ispage {
+  padding: 0;
+  position: relative;
+  min-height: 540px;
+
+  @media(max-width: 499px) {
+    min-height: 360px;
+  }
+}
+
+.this__issimple {
+  min-height: 0 !important;
+}
+
+.image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imageRelative{
+    position: relative;
+    width: 100%;
+    height: auto;
+
+}
+
+.image_grow {
+  position: relative;
+  height: auto;
+  width: 100%;
+}
+
+.page {
+  &__logo {
+    height: auto !important;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.25));
+  }
+
+  &__open {
+    object-position: left;
+  }
+
+}
+
+.pagedivider {
+  width: 100%;
+  height: 2px;
+
+  @media(max-width: 1023px) {
+    width: 2px !important;
+    height: auto;
+    margin: 0 1rem;
+  }
+}
+
+.video {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: none !important;
+}
+
+.video_container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+}
+
+
+.contactFormEmbed {
+  margin-left: -1rem;
+  margin-right: -1rem;
+  width: calc(100% + 2rem);
+}
+
+.imageReservations {
+  object-position: bottom left;
+}
+
+
+.reservations__inner {
+  flex-wrap: wrap;
+}

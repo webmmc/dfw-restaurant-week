@@ -1,0 +1,234 @@
+$red: #da3743;
+$gray: #b1b1b1;
+
+
+.nav {
+  padding: 2%;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: white;
+  transition: all 0.25s;
+  z-index: 999;
+
+  img {
+    transition: all 0.25s;
+    transform-origin: bottom;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 100%;
+    height: 1rem;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0) 100%);
+  }
+
+
+  &__inner {
+
+    @media(max-width: 800px) {
+      display: block;
+    }
+  }
+}
+
+.logo {
+  max-width: 20rem;
+
+
+  @media(max-width: 499px) {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 10rem;
+  }
+
+  &__link {
+    transition: all 0.25s;
+
+    &:hover {
+      opacity: 0.75;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+
+// MAIN MENU LINKS
+.menu {
+
+  transition: all 0.5s;
+
+  @media(max-width: 499px) {
+    padding-top: 2rem;
+    position: absolute;
+    top: 5.5rem;
+    right: 0;
+    background: #fffd;
+    transform: translateX(-100vw);
+    // opacity: 0;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0%;
+      height: 100vh;
+      width: 100%;
+      background: #fffd;
+      backdrop-filter: blur(5px);
+    }
+  }
+
+  &__item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    line-height: 1.3rem;
+
+    @media(max-width: 499px) {
+      width: 100%;
+      text-align: center;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      background: $red;
+      width: 3px;
+      height: 0.8rem;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+
+      @media(max-width: 499px) {
+        display: none;
+      }
+    }
+  }
+
+  &__first {
+    &:after {
+      display: none;
+    }
+  }
+
+  &__link {
+    text-transform: uppercase;
+    font-weight: 700;
+    white-space: nowrap;
+    @media screen and (max-width: 620px) {
+      font-size: 14px;
+    }
+    @media(max-width: 499px) {
+      width: 100%;
+      text-align: center;
+    }
+
+    &:hover {
+      color: black;
+      transform: translateY(-2px);
+
+    }
+  }
+}
+
+
+// SOCIAL LINKS
+.social {
+
+
+  @media(max-width: 499px) {
+    margin-top: 0.5rem;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  &__item {
+    width: 1.33rem;
+    height: 1.33rem;
+    position: relative;
+    color: $gray;
+
+    a,
+    svg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  &__link {
+    transition: all 0.25s;
+    &:hover {
+      color: black;
+      transform: translateY(-2px);
+    }
+
+  }
+
+  &__audacy {
+    height: 2.33rem;
+    width: 2.33rem;
+  }
+}
+
+
+.itineraryPanel {
+  max-width: 600px;
+  position: fixed;
+  background: #eeee;
+  background: #f4f4f4dd;
+  backdrop-filter: blur(5px);
+  right: -600px;
+  left: auto;
+  height: 100vh;
+  top: 0;
+  z-index: 9999;
+  width: 80%;
+  transition: all 0.2s;
+  opacity: 0;
+  pointer-events: none;
+
+  @media(max-width: 450px) {
+    width: 95%;
+  }
+}
+
+.itineraryContent {
+  // border: 1px solid red;
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.forkButton{
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  position: relative;
+  top: -1px;
+  left: -2px;
+  g{
+    fill: white;
+  }
+}
+
+.itineraryScrollbox{
+  height: calc(100vh - 10rem);
+  overflow: scroll;
+}
+
+.itineraryName{
+  @media(max-width: 768px){
+    width: 50%;
+  }
+}

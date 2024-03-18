@@ -1,0 +1,20 @@
+.metawidth {
+  width: calc(50% - 1rem);
+
+  @media(max-width: 1023px) {
+    width: 100%;
+
+    &:not(:last-of-type) {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.iframe {
+  min-height: 600px;
+  border: none;
+
+  @media(max-width: 499px) {
+    min-height: 300px;
+  }
+}

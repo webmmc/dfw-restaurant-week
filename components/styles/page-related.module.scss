@@ -1,0 +1,30 @@
+$red: #da3743;
+$gray: #b1b1b1;
+
+
+.related {
+
+  &__inner {
+    margin-left: -1rem;
+    margin-right: -1rem;
+
+    p {
+      font-size: 1rem;
+    }
+  }
+}
+
+
+.page {
+  display: block;
+  width: 25%;
+  padding: 1rem;
+
+  @media(max-width: 1023px) {
+    width: 50%;
+  }
+
+  @media(max-width: 399px) {
+    width: 100%;
+  }
+}
