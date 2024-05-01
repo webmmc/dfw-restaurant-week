@@ -24,6 +24,6 @@ module.exports = withPlugins([withExportImages], {
       "rw-cms.moritz.work",
     ],
   },
-  output: "export", 
+  // output: "export", 
   distDir: "out",
 });
