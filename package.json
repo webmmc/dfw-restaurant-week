@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "next",
-    "build": "next build && next-export-optimize-images",
+    "build": "npm install next-export-optimize-images@latest && next build && next-export-optimize-images",
     "start": "next start",
     "lint": "next lint",
     "move-functions": "cp -r functions out"
@@ -21,7 +21,7 @@
     "date-fns": "^2.28.0",
     "hamburger-react": "^2.5.0",
     "html-react-parser": "^3.0.16",
-    "next": "latest",
+    "next": "^14.2.3",
     "next-compose-plugins": "^2.2.1",
     "nextjs-progressbar": "^0.0.16",
     "react": "^18.2.0",
@@ -40,7 +40,7 @@
     "autoprefixer": "10.4.7",
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.3",
-    "next-export-optimize-images": "^2.1.0",
+    "next-export-optimize-images": "^4.3.1",
     "postcss": "8.4.14",
     "sass": "^1.60.0",
     "tailwindcss": "^3.0.24",
