@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "next",
-    "build": "npm install next-export-optimize-images@latest && next build && next-export-optimize-images",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "move-functions": "cp -r functions out"
