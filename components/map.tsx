@@ -59,7 +59,7 @@ useEffect(() => {
 
   return (
     <div className="lg:mt-6 ">
-      <LoadScript googleMapsApiKey="AIzaSyDDyF-wv1ACAIowI32BQusx8MgqChVK4Cg">
+      <LoadScript googleMapsApiKey={process?.env?.NEXT_PUBLIC_GOOGLE_API_URL}>
         <GoogleMap
           mapContainerStyle={mapStyles}
           zoom={4}
