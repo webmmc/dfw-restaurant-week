@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState , useEffect } from "react";
 import ItineraryContext from "../context/ItineraryContext";
 import type { GetStaticProps } from "next";
 import { useRouter } from "next/router";
@@ -18,6 +18,7 @@ import Layout from "../components/layout";
 import PostTitle from "../components/post-title";
 import CardAd from "../components/card-ad";
 import ReservationModal from "../components/ReservationModal";
+import Map from "../components/map";
 
 export default function RestaurantFilter({
   topAd,
@@ -259,6 +260,11 @@ export default function RestaurantFilter({
       "http://rw-cms.moritz.work/wp-content/uploads/2023/07/Full-List-Image-01-1.jpg",
   };
 
+
+
+  console.log('The filtered data has', filteredRestaurants);
+  
+  
   return (
     <>
       <Layout
@@ -271,6 +277,7 @@ export default function RestaurantFilter({
           <title>{`DFW Restaurant Week Reservations`}</title>
         </Head>
         <Main>
+          
           <PageAd adData={topAd} />
           <ReservationsHero restaurantData={pageData} />
           <Container>
@@ -563,6 +570,7 @@ export default function RestaurantFilter({
                 </div>
 
                 {/* Curated Collections */}
+                <Map restaurants={filteredRestaurants} />
                 <div
                   className={`flex flex-col mt-4 bg-red my-4 mb-4 ${styles.curated_collections}`}
                 >
