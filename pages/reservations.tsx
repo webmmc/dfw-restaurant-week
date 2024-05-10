@@ -273,7 +273,6 @@ export default function RestaurantFilter({
           <title>{`DFW Restaurant Week Reservations`}</title>
         </Head>
         <Main>
-          <Map restaurants={filteredRestaurants} />
           <PageAd adData={topAd} />
           <ReservationsHero restaurantData={pageData} />
           <Container>
@@ -566,6 +565,7 @@ export default function RestaurantFilter({
                 </div>
 
                 {/* Curated Collections */}
+                <Map restaurants={filteredRestaurants} />
                 <div
                   className={`flex flex-col mt-4 bg-red my-4 mb-4 ${styles.curated_collections}`}
                 >
