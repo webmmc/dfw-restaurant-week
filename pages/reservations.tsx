@@ -261,10 +261,6 @@ export default function RestaurantFilter({
   };
 
 
-
-  console.log('The filtered data has', filteredRestaurants);
-  
-  
   return (
     <>
       <Layout
@@ -277,7 +273,7 @@ export default function RestaurantFilter({
           <title>{`DFW Restaurant Week Reservations`}</title>
         </Head>
         <Main>
-          
+          <Map restaurants={filteredRestaurants} />
           <PageAd adData={topAd} />
           <ReservationsHero restaurantData={pageData} />
           <Container>
@@ -410,7 +406,7 @@ export default function RestaurantFilter({
                     >
                       Filter by{" "}
                       <span className="hidden md:inline-block">
-                        Locations, Cuisines, Weeks Participating
+                        Cuisines, Weeks Participating
                       </span>
                       <span className={styles.expand_arrow}>&#8679;</span>{" "}
                     </button>
@@ -451,7 +447,7 @@ export default function RestaurantFilter({
                     </div>
                   </div> */}
                     {/* Locations */}
-                    <div className="flex flex-col px-2 pr-8 py-4 border-l-2 border-gray">
+                    {/* <div className="flex flex-col px-2 pr-8 py-4 border-l-2 border-gray">
                       <h4 className="mt-4 md:mt-0">Locations</h4>
                       <div
                         className={`${styles.filter_list} ${styles.locations} filter-list-locations`}
@@ -488,10 +484,10 @@ export default function RestaurantFilter({
                           }
                         )}
                       </div>
-                    </div>
+                    </div> */}
                     {/* Cuisines */}
                     <div className="flex flex-col px-2  py-4  pr-8 border-l-2 border-gray">
-                      <h4 className="mt-4 md:mt-0">Cuisines</h4>
+                      <h4 className="mt-4 md:mt-0">Cuisine</h4>
                       <div
                         className={`${styles.filter_list} ${styles.cuisines}  cuisines-list-cuisines`}
                       >
@@ -570,7 +566,6 @@ export default function RestaurantFilter({
                 </div>
 
                 {/* Curated Collections */}
-                <Map restaurants={filteredRestaurants} />
                 <div
                   className={`flex flex-col mt-4 bg-red my-4 mb-4 ${styles.curated_collections}`}
                 >
