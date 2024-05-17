@@ -159,23 +159,18 @@ hr {
   }
 }
 
-
-.content__inner a img,
-.larger-link {
+.site-filters {
+  font-size: 1rem;
+  font-weight: 400;
+  border: 1px solid currentColor;
+  padding: 0.334em 0.667em;
   transition: all 0.25s;
-
-  &:hover {
-    transform: translateY(-0.25rem) !important;
-    box-shadow: 0 10px 10px -2px rgba(0, 0, 0, 0.15);
-  }
-
-  &--noshadow {
-    &:hover {
-      transform: translateY(-0.25rem) !important;
-      box-shadow: none;
-    }
-  }
+  display: inline-block;
+  font-weight: 700;
+  text-transform: uppercase;
 }
+
+
 
 .content__inner {
   ul {
