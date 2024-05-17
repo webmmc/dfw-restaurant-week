@@ -1,4 +1,4 @@
-import React, { useContext, useState , useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import ItineraryContext from "../context/ItineraryContext";
 import type { GetStaticProps } from "next";
 import { useRouter } from "next/router";
@@ -19,6 +19,7 @@ import PostTitle from "../components/post-title";
 import CardAd from "../components/card-ad";
 import ReservationModal from "../components/ReservationModal";
 import Map from "../components/map";
+import { MultiSelect } from "react-multi-select-component";
 
 export default function RestaurantFilter({
   topAd,
@@ -81,11 +82,20 @@ export default function RestaurantFilter({
     }, 550);
   };
 
-  // set empty in taxonomyFilters state on initial load
+  const router = useRouter();
   const [taxonomyFilters, setTaxonomyFilters] = useState(new Set<string>());
   const [cuisineFilters, setCuisineFilters] = useState(new Set<string>());
   const [locationFilters, setLocationFilters] = useState(new Set<string>());
   const [fullListChecked, setFullListChecked] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isExpanded, setExpanded] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalSrc, setModalSrc] = useState("");
+  const [mapfilters, setMapFilters] = useState([]);
+  const [weeklyParticipatingSelected, setWeeklyParticipatingSelected] =
+    useState([]);
+  const [cuisinesSelected, setCuisinesSelected] = useState([]);
+  const [curatedSelected, setCuratedSelected] = useState([]);
 
   const cuisineFiltersArray = Array.from(cuisineFilters);
   const locationFiltersArray = Array.from(locationFilters);
@@ -119,6 +129,7 @@ export default function RestaurantFilter({
     ];
 
   function updateFilters(checked, taxonomyFilter, filterType = "") {
+    setMapFilters([]);
     if (checked) {
       if (taxonomyFilter === "full-list") {
         setTaxonomyFilters(new Set<string>());
@@ -165,7 +176,7 @@ export default function RestaurantFilter({
     }
   }
 
-  const filteredRestaurants = restaurants?.edges
+  let filteredRestaurants = restaurants?.edges
     ?.filter(({ node }) => {
       const restaurantCuisines = node?.cuisines?.edges?.map(
         ({ node: taxonomy }) => taxonomy?.slug
@@ -210,6 +221,12 @@ export default function RestaurantFilter({
                 )
               : true);
     })
+    .filter(({ node }) => {
+      if (mapfilters.length > 0) {
+        return mapfilters.some((item) => item?.node?.id === node.id);
+      }
+      return true;
+    })
     .sort((a, b) => {
       const titleA = a.node.title.toLowerCase();
       const titleB = b.node.title.toLowerCase();
@@ -222,15 +239,11 @@ export default function RestaurantFilter({
       return 0;
     });
 
-  const router = useRouter();
-
-  const [isOpen, setIsOpen] = useState(false);
+  const allRestaurants = restaurants?.edges;
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
-
-  const [isExpanded, setExpanded] = useState(false);
 
   const handleButtonClick = () => {
     setExpanded(!isExpanded);
@@ -241,9 +254,6 @@ export default function RestaurantFilter({
   const handleCloseClick = () => {
     setExpanded(false);
   };
-
-  const [modalOpen, setModalOpen] = useState(false); // State to control the modal visibility
-  const [modalSrc, setModalSrc] = useState(""); // State to store the reservation link
 
   const openModal = (src) => {
     setModalOpen(true);
@@ -259,6 +269,42 @@ export default function RestaurantFilter({
     heroImage:
       "http://rw-cms.moritz.work/wp-content/uploads/2023/07/Full-List-Image-01-1.jpg",
   };
+
+  const handleRestaurantChange = (restaurants: any) => {
+    const updatedData = allRestaurants.filter((marker) =>
+      restaurants.some((restaurant) => restaurant.id === marker?.node?.id)
+    );
+    setMapFilters(updatedData);
+  };
+
+
+  const cuisinesOptions = cuisines?.edges?.map((item) => {
+    const { node } = item;
+    return {
+      label: node?.name,
+      value: node?.slug,
+      id: node?.id,
+    };
+  });
+
+  const weeklyParticipatingOptions = weeksParticipating?.edges?.map((item) => {
+    const { node } = item;
+    return {
+      label: node?.name,
+      value: node?.slug,
+      id: node?.id,
+    };
+  });
+
+  const curatedCollectionsOptions = curatedCollections?.edges?.map((item) => {
+    const { node } = item;
+    return {
+      label: node?.name,
+      value: node?.slug,
+      id: node?.id,
+    };
+  });
+
 
 
   return (
@@ -399,19 +445,15 @@ export default function RestaurantFilter({
                   </div>
                   <div className="p-2 block  not-md:hidden">
                     <button
-                      className="w-full lg:w-auto site-btn site-btn--primary lg:px-8"
-                      // onClick={() => handleOpenClick("filter")}
-                      onClick={() => handleButtonClick()}
-                    >
+                      className="w-full lg:w-auto site-filters  site-btn--primary lg:px-8">
                       Filter by{" "}
                       <span className="hidden md:inline-block">
                         Cuisines, Weeks Participating
                       </span>
-                      <span className={styles.expand_arrow}>&#8679;</span>{" "}
                     </button>
                   </div>
                 </div>
-                <div
+                {/* <div
                   className={`${styles.expanded_filters} expanded relative ${
                     isExpanded ? "this--expanded" : ""
                   }`}
@@ -427,64 +469,7 @@ export default function RestaurantFilter({
                   <div
                     className={`${styles.filterMaxWidth} mt-4 pb-4 flex flex-col sm:flex-row items-start flex-wrap justify-start`}
                   >
-                    {/* Full List */}
-
-                    {/* <div className="flex flex-col px-2 pr-8">
-                    <h4>Full List</h4>
-                    <div className="form-check ms-2">
-                      <label className="form-check-label justify-center">
-                        <input
-                          className="form-check-input mr-2"
-                          type="checkbox"
-                          checked={fullListChecked}
-                          onChange={(e) =>
-                            updateFilters(e.target.checked, "full-list")
-                          }
-                        />
-                        <span>Full List</span>
-                      </label>
-                    </div>
-                  </div> */}
-                    {/* Locations */}
-                    {/* <div className="flex flex-col px-2 pr-8 py-4 border-l-2 border-gray">
-                      <h4 className="mt-4 md:mt-0">Locations</h4>
-                      <div
-                        className={`${styles.filter_list} ${styles.locations} filter-list-locations`}
-                      >
-                        {locations?.edges?.map(
-                          ({ node: locationItem }, index) => {
-                            return (
-                              <div
-                                className="form-check ms-2"
-                                key={locationItem.id}
-                              >
-                                <label
-                                  className={`form-check-label flex items-start my-2 ${styles.line_height}`}
-                                >
-                                  <input
-                                    className="form-check-input mx-1"
-                                    type="checkbox"
-                                    checked={
-                                      taxonomyFilters.has(locationItem?.slug) &&
-                                      !fullListChecked
-                                    }
-                                    onChange={(e) =>
-                                      updateFilters(
-                                        e.target.checked,
-                                        locationItem?.slug,
-                                        "location"
-                                      )
-                                    }
-                                  />
-                                  {locationItem?.name}
-                                </label>
-                              </div>
-                            );
-                          }
-                        )}
-                      </div>
-                    </div> */}
-                    {/* Cuisines */}
+                    
                     <div className="flex flex-col px-2  py-4  pr-8 border-l-2 border-gray">
                       <h4 className="mt-4 md:mt-0">Cuisine</h4>
                       <div
@@ -523,7 +508,6 @@ export default function RestaurantFilter({
                         )}
                       </div>
                     </div>
-                    {/* Weeks Participating */}
                     <div className="flex flex-col px-2  py-4  pr-8 border-l-2 border-gray">
                       <h4 className="mt-4 md:mt-0">Weeks Participating</h4>
                       <div
@@ -546,12 +530,20 @@ export default function RestaurantFilter({
                                       taxonomyFilters.has(weekItem?.slug) &&
                                       !fullListChecked
                                     }
-                                    onChange={(e) =>
+                                    onChange={(e) => {
+                                      console.log(
+                                        " e.target.checked",
+                                        e.target.checked
+                                      );
+                                      console.log(
+                                        "weekItem?.slug",
+                                        weekItem?.slug
+                                      );
                                       updateFilters(
                                         e.target.checked,
                                         weekItem?.slug
-                                      )
-                                    }
+                                      );
+                                    }}
                                   />
                                   {weekItem?.name}
                                 </label>
@@ -563,9 +555,6 @@ export default function RestaurantFilter({
                     </div>
                   </div>
                 </div>
-
-                {/* Curated Collections */}
-                <Map restaurants={filteredRestaurants} />
                 <div
                   className={`flex flex-col mt-4 bg-red my-4 mb-4 ${styles.curated_collections}`}
                 >
@@ -607,7 +596,192 @@ export default function RestaurantFilter({
                       }
                     )}
                   </div>
+                </div> */}
+
+                <div className={styles.dropdown_main_container}>
+                  <div className="flex flex-col items-center">
+                    <p className="text-center pt-3 font-bold">
+                      Powered by Dallas Symphony Orchestra.
+                    </p>
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 sm:gap-2 md:gap-x-20 lg:grid-cols-3 lg:gap-x-20 xl:gap-x-36 pb-10 ">
+                      <div className={styles.dropdown_container}>
+                        <MultiSelect
+                          options={cuisinesOptions}
+                          value={cuisinesSelected}
+                          hasSelectAll={false}
+                          valueRenderer={ (selected, _options) => {
+                            return selected.length
+                            ? `Cuisines: ${selected.map(({ label }) =>label)}` 
+                            : "";
+                          }}
+                          onChange={(values: any) => {
+                          
+                            if (!values.length) {
+                              const valuesToExclude: string[] =
+                                cuisinesOptions.map(
+                                  (item) => item.value
+                                );
+                              const ExcludedSet: Set<string> = new Set(
+                                Array.from(taxonomyFilters).filter(
+                                  (value) => !valuesToExclude.includes(value)
+                                )
+                              );
+                              setCuisineFilters(new Set<string>()); 
+                              setTaxonomyFilters(ExcludedSet);
+                            } else {
+
+                              const newSelected = values.filter(
+                                (value: any) =>
+                                  !cuisinesSelected.some(
+                                    (cuisine) => cuisine.id === value.id
+                                  )
+                              );
+  
+                              const deSelected = cuisinesSelected.filter(
+                                (value) =>
+                                  !values.some(
+                                    (cuisine: any) => cuisine.id === value.id
+                                  )
+                              );
+  
+                              if (newSelected.length) {
+                                updateFilters(
+                                  true,
+                                  newSelected[0]?.value,
+                                  "cuisine"
+                                );
+                              }
+  
+                              if (deSelected.length) {
+                              
+                                updateFilters(
+                                  false,
+                                  deSelected[0]?.value,
+                                  "cuisine"
+                                );
+                              }
+
+                            }
+                            setCuisinesSelected(values);
+                          }}
+                          labelledBy="Cuisines"
+                          overrideStrings={{selectSomeItems: "Cuisines"}}
+                        />
+                      </div>
+                      <div className={styles.dropdown_container}>
+                        <MultiSelect
+                          options={curatedCollectionsOptions}
+                          value={curatedSelected}
+                          hasSelectAll={false}
+                          onChange={(values: any) => {
+                            if (!values.length) {
+                              const valuesToExclude: string[] =
+                                curatedCollectionsOptions.map(
+                                  (item) => item.value
+                                );
+                              const ExcludedSet: Set<string> = new Set(
+                                Array.from(taxonomyFilters).filter(
+                                  (value) => !valuesToExclude.includes(value)
+                                )
+                              );
+                              setTaxonomyFilters(ExcludedSet);
+                            } else {
+                              const newSelected = values.filter(
+                                (value: any) =>
+                                  !curatedSelected.some(
+                                    (curated) => curated.id === value.id
+                                  )
+                              );
+
+                              const deSelected = curatedSelected.filter(
+                                (value) =>
+                                  !values.some(
+                                    (curated: any) => curated.id === value.id
+                                  )
+                              );
+
+                              if (newSelected.length) {
+                                updateFilters(true, newSelected[0]?.value);
+                              }
+
+                              if (deSelected.length) {
+                                updateFilters(false, deSelected[0]?.value);
+                              }
+                            }
+
+                            setCuratedSelected(values);
+                          }}
+                          labelledBy="Curated Collections"
+                          valueRenderer={ (selected, _options) => {
+                            return selected.length
+                            ? `Curated Col: ${selected.map(({ label }) =>label)}` 
+                            : "";
+                          }}
+                          overrideStrings={{ selectSomeItems: "Curated Collections"}}
+                        />
+                      </div>
+                      <div className={styles.dropdown_container}>
+                        <MultiSelect
+                          options={weeklyParticipatingOptions}
+                          value={weeklyParticipatingSelected}
+                          valueRenderer={ (selected, _options) => {
+                            return selected.length
+                            ? `Week Participating: ${selected.map(({ label }) =>label)}` 
+                            : "";
+                          }}
+                          hasSelectAll={false}
+                          onChange={(values: any) => {
+                            if (!values.length) {
+                              const valuesToExclude: string[] =
+                                weeklyParticipatingOptions.map(
+                                  (item) => item.value
+                                );
+                              const ExcludedSet: Set<string> = new Set(
+                                Array.from(taxonomyFilters).filter(
+                                  (value) => !valuesToExclude.includes(value)
+                                )
+                              );
+                              setTaxonomyFilters(ExcludedSet);
+                            } else {
+                              const newSelected = values.filter(
+                                (value: any) =>
+                                  !weeklyParticipatingSelected.some(
+                                    (week) => week.id === value.id
+                                  )
+                              );
+
+                              const deSelected =
+                                weeklyParticipatingSelected.filter(
+                                  (value) =>
+                                    !values.some(
+                                      (week: any) => week.id === value.id
+                                    )
+                                );
+
+                              if (newSelected.length) {
+                                updateFilters(true, newSelected[0]?.value);
+                              }
+
+                              if (deSelected.length) {
+                                updateFilters(false, deSelected[0]?.value);
+                              }
+                            }
+                            setWeeklyParticipatingSelected(values);
+                          }}
+                          labelledBy="Week Participating"
+                          overrideStrings={{ selectSomeItems: "Week Participating"}}
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                <Map
+                  restaurants={filteredRestaurants}
+                  isFilterUpdated={mapfilters}
+                  handleMarkersChange={(restaurants: any) =>
+                    handleRestaurantChange(restaurants)
+                  }
+                />
 
                 {/* Full List */}
                 <div className="expander-section align-center justify-center bg-black mt-4 p-2">
@@ -621,9 +795,14 @@ export default function RestaurantFilter({
                           className="form-check-input mr-2 hidden"
                           type="checkbox"
                           checked={fullListChecked}
-                          onChange={(e) =>
+                          onChange={(e) =>{
                             updateFilters(e.target.checked, "full-list")
+                            setWeeklyParticipatingSelected([])
+                            setCuisinesSelected([])
+                            setCuratedSelected([])
+                            setCuisineFilters(new Set<string>());  
                           }
+                        }
                           onClick={handleCloseClick}
                         />
                         <span>reset</span>

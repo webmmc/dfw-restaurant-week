@@ -109,3 +109,17 @@
 .wp-block-media-text {
   @apply grid grid-cols-2 gap-4;
 }
+
+.rmsc {
+  --rmsc-main: #000000 !important;
+  --rmsc-gray: black !important;
+  font-size: small;
+  font-weight: 600;
+}
+.rmsc .gray {
+   font-weight: 600;
+   font-size: small;
+}
+.rmsc .dropdown-container {
+  background-color: hsl(0, 0%, 90%) !important;
+}
