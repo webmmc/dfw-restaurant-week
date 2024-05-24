@@ -173,7 +173,7 @@ const Map = ({ restaurants, handleMarkersChange, isFilterUpdated }) => {
                       <button
                         className="bg-[#da3743] px-3 py-1 text-white rounded-sm"
                       >
-                        View More
+                        View Menu
                       </button>
                     </Link>
                   </div>
