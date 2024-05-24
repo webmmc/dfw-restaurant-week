@@ -145,9 +145,6 @@ $gray: #b1b1b1;
 }
 
 
-
-.results_image {}
-
 .dining_card {
   padding-bottom: 66%;
   position: relative;
@@ -204,5 +201,31 @@ $gray: #b1b1b1;
   @media(max-width: 650px) {
     width: 20px;
     height: 28px;
+  }
+}
+
+.siteFiltersHeading {
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 0.334em 0.667em;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: black;
+  color: white;
+  border-color: white;
+}
+
+.resetButton {
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 0.334em 0.667em;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: black;
+  color: white;
+  border-color: white;
+
+  &:hover {
+    background: $red;
   }
 }
