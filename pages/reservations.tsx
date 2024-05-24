@@ -20,6 +20,7 @@ import CardAd from "../components/card-ad";
 import ReservationModal from "../components/ReservationModal";
 import Map from "../components/map";
 import { MultiSelect } from "react-multi-select-component";
+import SearchInput from "../components/searchInput";
 
 export default function RestaurantFilter({
   topAd,
@@ -85,6 +86,7 @@ export default function RestaurantFilter({
   const router = useRouter();
   const [taxonomyFilters, setTaxonomyFilters] = useState(new Set<string>());
   const [cuisineFilters, setCuisineFilters] = useState(new Set<string>());
+  const [curatedCollectionsFilters, setCuratedCollectionsFilters] = useState(new Set<string>());
   const [locationFilters, setLocationFilters] = useState(new Set<string>());
   const [fullListChecked, setFullListChecked] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
@@ -92,16 +94,18 @@ export default function RestaurantFilter({
   const [modalOpen, setModalOpen] = useState(false);
   const [modalSrc, setModalSrc] = useState("");
   const [mapfilters, setMapFilters] = useState([]);
-  const [weeklyParticipatingSelected, setWeeklyParticipatingSelected] =
-    useState([]);
+  const [searchfilters, setSearchFilters] = useState([]);
+  const [weeklyParticipatingSelected, setWeeklyParticipatingSelected] = useState([]);
   const [cuisinesSelected, setCuisinesSelected] = useState([]);
   const [curatedSelected, setCuratedSelected] = useState([]);
-
+  const [search, setSearch] = useState<string>('');
   const cuisineFiltersArray = Array.from(cuisineFilters);
+  const curatedCollectionsFiltersArray = Array.from(curatedCollectionsFilters);
   const locationFiltersArray = Array.from(locationFilters);
 
   const taxonomyFiltersArray = Array.from(taxonomyFilters);
   const taxonomyOrFiltersArray = [
+    ...curatedCollectionsFiltersArray,
     ...cuisineFiltersArray,
     ...locationFiltersArray,
   ];
@@ -131,6 +135,7 @@ export default function RestaurantFilter({
   function updateFilters(checked, taxonomyFilter, filterType = "") {
     setMapFilters([]);
     if (checked) {
+     
       if (taxonomyFilter === "full-list") {
         setTaxonomyFilters(new Set<string>());
         setFullListChecked(true);
@@ -147,8 +152,14 @@ export default function RestaurantFilter({
       if (filterType === "location") {
         setLocationFilters((prev) => new Set(prev).add(taxonomyFilter));
       }
+      if (filterType === "curatedCollection") {
+        setCuratedCollectionsFilters((prev) =>
+          new Set(prev).add(taxonomyFilter)
+        );
+      }
     }
     if (!checked) {
+    
       if (taxonomyFilter === "full-list") {
         setTaxonomyFilters(new Set<string>());
         setFullListChecked(false);
@@ -168,6 +179,13 @@ export default function RestaurantFilter({
       }
       if (filterType === "location") {
         setLocationFilters((prev) => {
+          const next = new Set(prev);
+          next.delete(taxonomyFilter);
+          return next;
+        });
+      }
+      if (filterType === "curatedCollection") {
+        setCuratedCollectionsFilters((prev) => {
           const next = new Set(prev);
           next.delete(taxonomyFilter);
           return next;
@@ -199,6 +217,7 @@ export default function RestaurantFilter({
         ...restaurantWeeksParticipating,
         ...restaurantCuratedCollections,
       ];
+
       const taxonomyAndFiltersArray = taxonomyFiltersArray.filter(
         (filter) => !taxonomyOrFiltersArray.includes(filter)
       );
@@ -219,11 +238,22 @@ export default function RestaurantFilter({
               ? locationFiltersArray.some((taxonomy) =>
                   restaurantLocations.includes(taxonomy)
                 )
+              : true) &&
+            (curatedCollectionsFiltersArray.length !== 0
+              ? curatedCollectionsFiltersArray.some((taxonomy) =>
+                  restaurantCuratedCollections.includes(taxonomy)
+                )
               : true);
     })
     .filter(({ node }) => {
       if (mapfilters.length > 0) {
         return mapfilters.some((item) => item?.node?.id === node.id);
+      }
+      return true;
+    })
+    .filter(({ node }) => {
+      if (search) {
+        return searchfilters.some((item) => item?.node?.id === node.id);
       }
       return true;
     })
@@ -277,7 +307,6 @@ export default function RestaurantFilter({
     setMapFilters(updatedData);
   };
 
-
   const cuisinesOptions = cuisines?.edges?.map((item) => {
     const { node } = item;
     return {
@@ -306,7 +335,16 @@ export default function RestaurantFilter({
   });
 
 
+  const handleSearch = (value:string)=>{
+    const values =  allRestaurants.filter(restaurant => 
+      restaurant.node.title.toLowerCase().includes(value.toLowerCase())
+    );   
+    setSearchFilters(values)    
+  }
 
+console.log('the filtered data has', filteredRestaurants);
+
+ 
   return (
     <>
       <Layout
@@ -410,10 +448,7 @@ export default function RestaurantFilter({
                 <div
                   className={`expander-section lg:flex lg:flex-row align-center justify-center bg-black mt-4 ${styles.expaner} `}
                 >
-                  {/* <div className={`py-2 ${styles.fill_list_button_width}`}>
-                    
-                  </div> */}
-                  <div className="p-2 hidden  not-md:block">
+                  {/* <div className="p-2 hidden  not-md:block">
                     <button
                       className="w-full lg:w-auto site-btn site-btn--primary lg:px-8"
                       // onClick={() => handleOpenClick("location")}
@@ -432,25 +467,27 @@ export default function RestaurantFilter({
                       Cuisine{" "}
                       <span className={styles.expand_arrow}>&#8679;</span>{" "}
                     </button>
-                  </div>
-                  <div className="p-2 hidden  not-md:block ">
+                  </div> */}
+                  {/* <div className="p-2 hidden  not-md:block ">
                     <button
-                      className="w-full lg:w-auto site-btn site-btn--primary lg:px-8"
+                      className="w-full lg:w-auto site-btn  lg:px-8"
                       // onClick={() => handleOpenClick("weeks")}
                       onClick={() => handleButtonClick()}
                     >
                       Weeks Participating{" "}
                       <span className={styles.expand_arrow}>&#8679;</span>{" "}
                     </button>
-                  </div>
-                  <div className="p-2 block  not-md:hidden">
-                    <button
-                      className="w-full lg:w-auto site-filters  site-btn--primary lg:px-8">
-                      Filter by{" "}
+                  </div> */}
+                  <div className="p-2 not-md:hidden">
+                    <div
+                      className={`w-full lg:w-auto ${styles.siteFiltersHeading} flex justify-center lg:px-8`}
+                    >
+                      MAP VIEW FILTER
                       <span className="hidden md:inline-block">
-                        Cuisines, Weeks Participating
+                        &nbsp; BY CUISINES, CURATED COLLECTIONS & WEEK
+                        PARTICIPATING
                       </span>
-                    </button>
+                    </div>
                   </div>
                 </div>
                 {/* <div
@@ -555,95 +592,93 @@ export default function RestaurantFilter({
                     </div>
                   </div>
                 </div>
-                <div
-                  className={`flex flex-col mt-4 bg-red my-4 mb-4 ${styles.curated_collections}`}
-                >
-                  <h4 className="sr-only text-center">Curated Collections</h4>
-                  <div
-                    className={`${styles.collections_container} grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 p-3`}
-                  >
-                    {curatedCollections?.edges?.map(
-                      ({ node: curatedCollectionItem }) => {
-                        return (
-                          <div
-                            className="form-check ms-2"
-                            key={curatedCollectionItem.id}
-                          >
-                            <label
-                              className={`${styles.curated_label} form-check-label flex items-center uppercase font-bold`}
-                            >
-                              <input
-                                className="form-check-input mx-1"
-                                type="checkbox"
-                                checked={
-                                  taxonomyFilters.has(
-                                    curatedCollectionItem?.slug
-                                  ) && !fullListChecked
-                                }
-                                onChange={(e) =>
-                                  updateFilters(
-                                    e.target.checked,
-                                    curatedCollectionItem?.slug
-                                  )
-                                }
-                              />
-                              <span className={`${styles.curated_label_text}`}>
-                                {curatedCollectionItem?.name}
-                              </span>
-                            </label>
-                          </div>
-                        );
-                      }
-                    )}
-                  </div>
-                </div> */}
+                // <div
+                //   className={`flex flex-col mt-4 bg-red my-4 mb-4 ${styles.curated_collections}`}
+                // >
+                //   <h4 className="sr-only text-center">Curated Collections</h4>
+                //   <div
+                //     className={`${styles.collections_container} grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 p-3`}
+                //   >
+                //     {curatedCollections?.edges?.map(
+                //       ({ node: curatedCollectionItem }) => {
+                //         return (
+                //           <div
+                //             className="form-check ms-2"
+                //             key={curatedCollectionItem.id}
+                //           >
+                //             <label
+                //               className={`${styles.curated_label} form-check-label flex items-center uppercase font-bold`}
+                //             >
+                //               <input
+                //                 className="form-check-input mx-1"
+                //                 type="checkbox"
+                //                 checked={
+                //                   taxonomyFilters.has(
+                //                     curatedCollectionItem?.slug
+                //                   ) && !fullListChecked
+                //                 }
+                //                 onChange={(e) =>
+                //                   updateFilters(
+                //                     e.target.checked,
+                //                     curatedCollectionItem?.slug
+                //                   )
+                //                 }
+                //               />
+                //               <span className={`${styles.curated_label_text}`}>
+                //                 {curatedCollectionItem?.name}
+                //               </span>
+                //             </label>
+                //           </div>
+                //         );
+                //       }
+                //     )}
+                //   </div>
+                // </div> */}
 
                 <div className={styles.dropdown_main_container}>
                   <div className="flex flex-col items-center">
                     <p className="text-center pt-3 font-bold">
                       Powered by Dallas Symphony Orchestra.
                     </p>
-                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 sm:gap-2 md:gap-x-20 lg:grid-cols-3 lg:gap-x-20 xl:gap-x-36 pb-10 ">
-                      <div className={styles.dropdown_container}>
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 sm:gap-2 md:gap-x-16 lg:grid-cols-4 lg:gap-x-16 xl:gap-x-30 pb-10 ">
+                      <div className="xl:w-60 lg:w-40 sm:w-64">
                         <MultiSelect
                           options={cuisinesOptions}
                           value={cuisinesSelected}
                           hasSelectAll={false}
-                          valueRenderer={ (selected, _options) => {
+                          valueRenderer={(selected, _options) => {
                             return selected.length
-                            ? `Cuisines: ${selected.map(({ label }) =>label)}` 
-                            : "";
+                              ? `Cuisines: ${selected.map(
+                                  ({ label }) => label
+                                )}`
+                              : "";
                           }}
                           onChange={(values: any) => {
-                          
                             if (!values.length) {
                               const valuesToExclude: string[] =
-                                cuisinesOptions.map(
-                                  (item) => item.value
-                                );
+                                cuisinesOptions.map((item) => item.value);
                               const ExcludedSet: Set<string> = new Set(
                                 Array.from(taxonomyFilters).filter(
                                   (value) => !valuesToExclude.includes(value)
                                 )
                               );
-                              setCuisineFilters(new Set<string>()); 
+                              setCuisineFilters(new Set<string>());
                               setTaxonomyFilters(ExcludedSet);
                             } else {
-
                               const newSelected = values.filter(
                                 (value: any) =>
                                   !cuisinesSelected.some(
                                     (cuisine) => cuisine.id === value.id
                                   )
                               );
-  
+
                               const deSelected = cuisinesSelected.filter(
                                 (value) =>
                                   !values.some(
                                     (cuisine: any) => cuisine.id === value.id
                                   )
                               );
-  
+
                               if (newSelected.length) {
                                 updateFilters(
                                   true,
@@ -651,28 +686,33 @@ export default function RestaurantFilter({
                                   "cuisine"
                                 );
                               }
-  
+
                               if (deSelected.length) {
-                              
                                 updateFilters(
                                   false,
                                   deSelected[0]?.value,
                                   "cuisine"
                                 );
                               }
-
                             }
                             setCuisinesSelected(values);
                           }}
                           labelledBy="Cuisines"
-                          overrideStrings={{selectSomeItems: "Cuisines"}}
+                          overrideStrings={{ selectSomeItems: "Cuisines" }}
                         />
                       </div>
-                      <div className={styles.dropdown_container}>
+                      <div className="xl:w-60 lg:w-40 sm:w-64">
                         <MultiSelect
                           options={curatedCollectionsOptions}
                           value={curatedSelected}
                           hasSelectAll={false}
+                          valueRenderer={(selected, _options) => {
+                            return selected.length
+                              ? `Curated Collections: ${selected.map(
+                                  ({ label }) => label
+                                )}`
+                              : "";
+                          }}
                           onChange={(values: any) => {
                             if (!values.length) {
                               const valuesToExclude: string[] =
@@ -684,50 +724,59 @@ export default function RestaurantFilter({
                                   (value) => !valuesToExclude.includes(value)
                                 )
                               );
+                              setCuratedCollectionsFilters(new Set<string>());
                               setTaxonomyFilters(ExcludedSet);
                             } else {
                               const newSelected = values.filter(
                                 (value: any) =>
                                   !curatedSelected.some(
-                                    (curated) => curated.id === value.id
+                                    (collection) => collection.id === value.id
                                   )
                               );
 
-                              const deSelected = curatedSelected.filter(
-                                (value) =>
-                                  !values.some(
-                                    (curated: any) => curated.id === value.id
-                                  )
-                              );
+                              const deSelected =
+                              curatedSelected.filter(
+                                  (value) =>
+                                    !values.some(
+                                      (collection: any) =>
+                                        collection.id === value.id
+                                    )
+                                );
 
                               if (newSelected.length) {
-                                updateFilters(true, newSelected[0]?.value);
+                                updateFilters(
+                                  true,
+                                  newSelected[0]?.value,
+                                  "curatedCollection"
+                                );
                               }
 
                               if (deSelected.length) {
-                                updateFilters(false, deSelected[0]?.value);
+                                updateFilters(
+                                  false,
+                                  deSelected[0]?.value,
+                                  "curatedCollection"
+                                );
                               }
                             }
-
                             setCuratedSelected(values);
                           }}
                           labelledBy="Curated Collections"
-                          valueRenderer={ (selected, _options) => {
-                            return selected.length
-                            ? `Curated Col: ${selected.map(({ label }) =>label)}` 
-                            : "";
+                          overrideStrings={{
+                            selectSomeItems: "Curated Collections",
                           }}
-                          overrideStrings={{ selectSomeItems: "Curated Collections"}}
                         />
                       </div>
-                      <div className={styles.dropdown_container}>
+                      <div className="xl:w-60 lg:w-40 sm:w-64">
                         <MultiSelect
                           options={weeklyParticipatingOptions}
                           value={weeklyParticipatingSelected}
-                          valueRenderer={ (selected, _options) => {
+                          valueRenderer={(selected, _options) => {
                             return selected.length
-                            ? `Week Participating: ${selected.map(({ label }) =>label)}` 
-                            : "";
+                              ? `Week Participating: ${selected.map(
+                                  ({ label }) => label
+                                )}`
+                              : "";
                           }}
                           hasSelectAll={false}
                           onChange={(values: any) => {
@@ -769,8 +818,20 @@ export default function RestaurantFilter({
                             setWeeklyParticipatingSelected(values);
                           }}
                           labelledBy="Week Participating"
-                          overrideStrings={{ selectSomeItems: "Week Participating"}}
+                          overrideStrings={{
+                            selectSomeItems: "Week Participating",
+                          }}
                         />
+                      </div>
+                      <div className="xl:w-60 lg:w-40">
+                      <SearchInput
+                      label="Search..."
+                      handleSearch={(value:string)=>{
+                        setSearch(value);
+                        handleSearch(value)
+                      }}
+                      />
+                                
                       </div>
                     </div>
                   </div>
@@ -782,27 +843,29 @@ export default function RestaurantFilter({
                     handleRestaurantChange(restaurants)
                   }
                 />
-
                 {/* Full List */}
-                <div className="expander-section align-center justify-center bg-black mt-4 p-2">
+                <div
+                  className={`expander-section ${styles.resetButton} align-center justify-center bg-black mt-4 p-2`}
+                >
                   <div className="flex flex-col px-2">
                     <div className="form-check">
                       <label
-                        className="site-btn site-btn--primary flex algin-center lg:px-8 form-check-label justify-center"
+                        className="flex algin-center lg:px-8 form-check-label justify-center p-2"
                         onClick={handleCloseClick}
                       >
                         <input
                           className="form-check-input mr-2 hidden"
                           type="checkbox"
                           checked={fullListChecked}
-                          onChange={(e) =>{
-                            updateFilters(e.target.checked, "full-list")
-                            setWeeklyParticipatingSelected([])
-                            setCuisinesSelected([])
-                            setCuratedSelected([])
-                            setCuisineFilters(new Set<string>());  
-                          }
-                        }
+                          onChange={(e) => {
+                            updateFilters(e.target.checked, "full-list");
+                            setWeeklyParticipatingSelected([]);
+                            setCuisinesSelected([]);
+                            setCuratedSelected([]);
+                            setSearchFilters([]);
+                            setSearch('');
+                            setCuisineFilters(new Set<string>());
+                          }}
                           onClick={handleCloseClick}
                         />
                         <span>reset</span>
@@ -839,6 +902,7 @@ export default function RestaurantFilter({
                         <Link
                           href={restaurantItem?.uri}
                           className=" block mt-0 mb-auto"
+                          target="_blank"
                         >
                           <div className={`${styles.dining_card} relative`}>
                             <Image

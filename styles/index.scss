@@ -111,8 +111,9 @@
 }
 
 .rmsc {
-  --rmsc-main: #000000 !important;
-  --rmsc-gray: black !important;
+  --rmsc-main: white !important;
+  --rmsc-gray: white !important;
+  --rmsc-selected: white !important;
   font-size: small;
   font-weight: 600;
 }
@@ -121,5 +122,40 @@
    font-size: small;
 }
 .rmsc .dropdown-container {
-  background-color: hsl(0, 0%, 90%) !important;
+  background-color:#da3743 !important;
 }
+
+.rmsc .dropdown-heading {
+    color: white;
+}
+
+.resetButton {
+  color:white;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  &:hover {
+    color: white;
+    border-color: $red;
+    background-color: $red;
+  }
+}
+
+// input[type="checkbox"] {
+//   filter: sepia(100%) brightness(80%) hue-rotate(170deg) saturate(70%) contrast(300%);
+// }
+
+
+.gm-style-iw-d{
+  max-height: max-content !important;
+  overflow: hidden !important;
+}
+
+.gm-style .gm-style-iw-c {
+   padding: 0px; 
+   padding-top: 0px !important;
+}
+.gm-ui-hover-effect {
+  opacity: 1 !important;
+}
+

@@ -159,17 +159,6 @@ hr {
   }
 }
 
-.site-filters {
-  font-size: 1rem;
-  font-weight: 400;
-  border: 1px solid currentColor;
-  padding: 0.334em 0.667em;
-  transition: all 0.25s;
-  display: inline-block;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
 
 
 .content__inner {
@@ -524,8 +513,6 @@ hr {
 .smaller-line-height {
   line-height: 1.2;
 }
-
-
 
 
 @import 'grid-system.scss'
