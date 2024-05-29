@@ -11,8 +11,6 @@ import Link from "next/link";
 const Map = ({ restaurants, handleMarkersChange, isFilterUpdated }) => {
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [markers, setMarkers] = useState([]);
-  const [updatedMarkers, setUpdatedMarkers] = useState([]);
-  const [isZoom, setIsZoom] = useState(false);
   const [map, setMap] = useState(null);
 
   const mapStyles = {
@@ -27,61 +25,31 @@ const Map = ({ restaurants, handleMarkersChange, isFilterUpdated }) => {
   useEffect(() => {
     if (map && markers.length && restaurants.length) {
       const bounds = new window.google.maps.LatLngBounds();
-      markers.forEach((marker) => {
+      markers.forEach((marker) => { 
         bounds.extend(new window.google.maps.LatLng(marker.lat, marker.lng));
       });
       map.fitBounds(bounds);
     }
-  }, [markers, selectedMarker]);
+  }, [map, markers, restaurants, selectedMarker]);
+
 
   useEffect(() => {
     if (map && restaurants.length) {
-      const geocoder = new window.google.maps.Geocoder();
-      Promise.all(
-        restaurants.map(
-          (restaurant) =>
-            new Promise((resolve, reject) => {
-              geocoder.geocode(
-                { address: restaurant.node.restaurantFields.restaurantAddress },
-                (results, status) => {
-                  if (status === "OK" && results[0]) {
-                    const { lat, lng } = results[0].geometry.location;
-                    restaurant.node.latitude = lat();
-                    restaurant.node.longitude = lng();
-                    resolve({
-                      id: restaurant.node.id,
-                      lat: lat(),
-                      lng: lng(),
-                      title: restaurant.node.title,
-                      description:restaurant.node.restaurantFields.restaurantAddress,
-                      image: restaurant.node.restaurantFields?.restaurantLogo.mediaItemUrl,
-                      altText: restaurant.node.featuredImage?.node?.altText,
-                      uri: restaurant.node.uri
-                    });
-                  } else {
-                    console.error(
-                      "Geocode was not successful for the following reason:",
-                      status
-                    );
-                    reject();
-                  }
-                }
-              );
-            })
+      const selectedMarkers = restaurants
+        .filter((restaurant: any) => 
+          restaurant.node.restaurantFields.latitude && restaurant.node.restaurantFields.longitude
         )
-      )
-        .then((markers) => {
-          const selectedMarkers = markers.filter((marker) =>
-            restaurants.some((restaurant) => restaurant.node.id === marker.id)
-          );
-          setMarkers(selectedMarkers);
-          if (!isZoom || !isFilterUpdated.length) {
-            setUpdatedMarkers(selectedMarkers);
-          }
-        })
-        .catch((error) => {
-          console.error("Error occurred during geocoding:", error);
-        });
+        .map((restaurant: any) => ({
+          id: restaurant.node.id,
+          lat: parseFloat(restaurant.node.restaurantFields.latitude),
+          lng: parseFloat(restaurant.node.restaurantFields.longitude),
+          title: restaurant.node.title,
+          description: restaurant.node.restaurantFields.restaurantAddress,
+          image: restaurant.node.restaurantFields?.restaurantLogo.mediaItemUrl,
+          altText: restaurant.node.featuredImage?.node?.altText,
+          uri: restaurant.node.uri
+        }));
+      setMarkers(selectedMarkers);
     }
   }, [restaurants, map]);
 
@@ -90,12 +58,11 @@ const Map = ({ restaurants, handleMarkersChange, isFilterUpdated }) => {
   };
 
   const searchMap = () => {
-    if (map && updatedMarkers.length) {
+    if (map && markers.length) {
       const bounds = map.getBounds();
       const visibleMarkers = markers.filter((marker) =>
         bounds.contains(new window.google.maps.LatLng(marker.lat, marker.lng))
       );
-      setIsZoom(true);
       handleMarkersChange(visibleMarkers);
     }
   };
@@ -120,9 +87,6 @@ const Map = ({ restaurants, handleMarkersChange, isFilterUpdated }) => {
     width: "120px",
     border: "2px solid #da3743",
   };
-
-  console.log('The markers look like ',markers);
-  
 
   return (
     <div className="mt-4">
@@ -152,16 +116,20 @@ const Map = ({ restaurants, handleMarkersChange, isFilterUpdated }) => {
                 position={{ lat: selectedMarker.lat, lng: selectedMarker.lng }}
                 onCloseClick={() => setSelectedMarker(null)}
               >
-                <>
-                  <Image
+
+              { selectedMarker.image && 
+                  <div className="flex flex-col items-center ">
+                    <div className="h-32" >
+                    <Image
+                    className="object-cover"
                     src={selectedMarker.image}
                     alt={selectedMarker?.altText}
-                    width={288}
-                    height={50}
-                    className="h-28"
+                    width={200}
+                    height={200}
                   />
-                  <div className="w-72 pl-5  pt-2 pb-3">
-                    <p className="text-lg mb-[10px]" style={{ fontFamily: "Pinyon Script", fontSize:'30px' }}>
+                    </div>
+                  <div className="w-64 px-5 pt-2 pb-3">
+                    <p className="text-lg mb-[10px]" style={{ fontFamily: "Pinyon Script", fontSize:'24px' }}>
                       {selectedMarker.title}
                     </p>
                     <p className="mb-[12px]" >{selectedMarker.description}</p>
@@ -177,7 +145,8 @@ const Map = ({ restaurants, handleMarkersChange, isFilterUpdated }) => {
                       </button>
                     </Link>
                   </div>
-                </>
+                </div>
+              }
               </InfoWindow>
             )}
           </GoogleMap>
