@@ -341,10 +341,8 @@ export default function RestaurantFilter({
     );   
     setSearchFilters(values)    
   }
-
-console.log('the filtered data has', filteredRestaurants);
-
  
+
   return (
     <>
       <Layout
@@ -865,6 +863,7 @@ console.log('the filtered data has', filteredRestaurants);
                             setSearchFilters([]);
                             setSearch('');
                             setCuisineFilters(new Set<string>());
+                            setCuratedCollectionsFilters(new Set<string>());
                           }}
                           onClick={handleCloseClick}
                         />
