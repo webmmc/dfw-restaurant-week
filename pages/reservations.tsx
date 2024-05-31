@@ -297,7 +297,7 @@ export default function RestaurantFilter({
 
   const pageData = {
     heroImage:
-      "https://restaurantcms2.wpenginepowered.com/wp-content/uploads/2024/05/2024-DFWRW-MAKE-YOUR-RESERVATIONS-HERE-HERO-IMAGE-.png",
+      "https://restaurantcms2.wpenginepowered.com/wp-content/uploads/2024/05/2024-DFWRW-MAKE-YOUR-RESERVATIONS-HERE-HERO-IMAGE.png",
   };
 
   const handleRestaurantChange = (restaurants: any) => {
