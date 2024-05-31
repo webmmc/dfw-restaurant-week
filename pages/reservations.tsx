@@ -297,7 +297,7 @@ export default function RestaurantFilter({
 
   const pageData = {
     heroImage:
-      "http://rw-cms.moritz.work/wp-content/uploads/2023/07/Full-List-Image-01-1.jpg",
+      "https://restaurantcms2.wpenginepowered.com/wp-content/uploads/2024/05/2024-DFWRW-MAKE-YOUR-RESERVATIONS-HERE-HERO-IMAGE-.png",
   };
 
   const handleRestaurantChange = (restaurants: any) => {
