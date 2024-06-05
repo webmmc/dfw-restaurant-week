@@ -25,9 +25,10 @@ body {
   // font-size: 0.825rem !important; /* 14px */
   font-size: 1rem;
 
-  @media(min-width: 1400px){
+  @media(min-width: 1400px) {
     font-size: 1.2rem;
   }
+
   // Removed per Patrick (designer), who felt all font sizes seemed to small.
 }
 
@@ -152,6 +153,7 @@ hr {
 
   &--small-on-mobile {
     line-height: 1.1;
+
     @media(max-width: 1200px) {
       font-size: 0.75rem;
       line-height: 1.15;
@@ -351,7 +353,7 @@ hr {
     opacity: 0;
   }
 
-  
+
 
   .hero-carousel-info {
     opacity: 0.5;
@@ -382,11 +384,12 @@ hr {
 }
 
 
-.form-check{
-  @media(max-width: 767px){
+.form-check {
+  @media(max-width: 767px) {
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
-    input{
+
+    input {
       margin-top: 0.125rem;
     }
   }
@@ -512,6 +515,29 @@ hr {
 
 .smaller-line-height {
   line-height: 1.2;
+}
+
+.floating-button {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  width: 50px;
+  height: 50px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.floating-button:hover {
+  background-color: #b71520;
 }
 
 

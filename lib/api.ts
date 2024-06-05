@@ -132,9 +132,9 @@ export async function getPostAndMorePosts(slug, preview, previewData) {
         ...PostFields
         content
         ${
-    // Only some of the fields of a revision are considered as there are some inconsistencies
-    isRevision
-      ? `
+          // Only some of the fields of a revision are considered as there are some inconsistencies
+          isRevision
+            ? `
         revisions(first: 1, where: { orderby: { field: MODIFIED, order: DESC } }) {
           edges {
             node {
@@ -145,8 +145,8 @@ export async function getPostAndMorePosts(slug, preview, previewData) {
           }
         }
         `
-      : ""
-    }
+            : ""
+        }
       }
       posts(first: 3, where: { orderby: { field: DATE, order: DESC } }) {
         edges {
@@ -302,8 +302,6 @@ export async function getRestaurantAndMoreRestaurants(
         jamesBeard
         dressForTheOccasion
         restaurantAddress
-        longitude
-        latitude
         website
         openTable
         openTableLink
@@ -446,9 +444,9 @@ export async function getRestaurantAndMoreRestaurants(
       restaurant(id: $id, idType: $idType){
         ...RestaurantFields
         ${
-    // Only some of the fields of a revision are considered as there are some inconsistencies
-    isRevision
-      ? `
+          // Only some of the fields of a revision are considered as there are some inconsistencies
+          isRevision
+            ? `
         revisions(first: 1, where: { orderby: { field: MODIFIED, order: DESC } }) {
           edges {
             node {
@@ -459,8 +457,8 @@ export async function getRestaurantAndMoreRestaurants(
           }
         }
         `
-      : ""
-    }
+            : ""
+        }
       }
       restaurants(first: 1000, where: { orderby: { field: DATE, order: DESC } }){
         edges{
@@ -654,9 +652,9 @@ export async function getPageAndMorePages(slug, preview, previewData) {
       page(id: $id, idType: $idType){
         ...PageFields
         ${
-    // Only some of the fields of a revision are considered as there are some inconsistencies
-    isRevision
-      ? `
+          // Only some of the fields of a revision are considered as there are some inconsistencies
+          isRevision
+            ? `
         revisions(first: 1, where: { orderby: { field: MODIFIED, order: DESC } }) {
           edges {
             node {
@@ -667,8 +665,8 @@ export async function getPageAndMorePages(slug, preview, previewData) {
           }
         }
         `
-      : ""
-    }
+            : ""
+        }
       }
       pages(first: 1000, where: { orderby: { field: DATE, order: DESC } }){
         edges{
