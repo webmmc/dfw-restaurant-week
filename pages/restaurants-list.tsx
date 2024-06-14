@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import type { GetStaticProps } from "next";
 import Head from "next/head";
 import Container from "../components/container";
@@ -51,7 +51,7 @@ export default function RestaurantList({
       restaurants.edges.map((restaurant, index) =>
         currentData.push({
           key: index,
-          logo: <Image src={restaurant.node.restaurantFields?.restaurantLogo.mediaItemUrl} width={100} height={80} alt="" /> ,
+          logo: <Image src={restaurant.node.restaurantFields?.restaurantLogo.mediaItemUrl} width={150} height={110} alt="" />,
           name: restaurant.node.title,
           weekParticipating: restaurant.node.weeksParticipating.edges?.map((week, index) => {
             return <p key={index}>{week.node.name}</p>;
@@ -79,7 +79,10 @@ export default function RestaurantList({
         </Head>
         <Main>
           <PageAd adData={topAd} />
-          <PageSeparator optionalHeadline={`Restautants List `} />
+          <PageSeparator optionalHeadline="Restaurants List" />
+          <p className="text-center font-bold">
+            Driven by Mercedes Benz of Plano
+          </p>
           <div ref={tableRef}>
             <Table
               tableBody={getTableBody()}
@@ -90,7 +93,7 @@ export default function RestaurantList({
           <PageAd adData={bottomAd} />
         </Main>
         <ReactToPrint
-          trigger={() => <button className="floating-button"><FiPrinter/></button>}
+          trigger={() => <button className="floating-button"><FiPrinter /></button>}
           content={() => tableRef.current}
         />
       </Layout>

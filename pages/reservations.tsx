@@ -86,7 +86,9 @@ export default function RestaurantFilter({
   const router = useRouter();
   const [taxonomyFilters, setTaxonomyFilters] = useState(new Set<string>());
   const [cuisineFilters, setCuisineFilters] = useState(new Set<string>());
-  const [curatedCollectionsFilters, setCuratedCollectionsFilters] = useState(new Set<string>());
+  const [curatedCollectionsFilters, setCuratedCollectionsFilters] = useState(
+    new Set<string>()
+  );
   const [locationFilters, setLocationFilters] = useState(new Set<string>());
   const [fullListChecked, setFullListChecked] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
@@ -95,10 +97,11 @@ export default function RestaurantFilter({
   const [modalSrc, setModalSrc] = useState("");
   const [mapfilters, setMapFilters] = useState([]);
   const [searchfilters, setSearchFilters] = useState([]);
-  const [weeklyParticipatingSelected, setWeeklyParticipatingSelected] = useState([]);
+  const [weeklyParticipatingSelected, setWeeklyParticipatingSelected] =
+    useState([]);
   const [cuisinesSelected, setCuisinesSelected] = useState([]);
   const [curatedSelected, setCuratedSelected] = useState([]);
-  const [search, setSearch] = useState<string>('');
+  const [search, setSearch] = useState<string>("");
   const cuisineFiltersArray = Array.from(cuisineFilters);
   const curatedCollectionsFiltersArray = Array.from(curatedCollectionsFilters);
   const locationFiltersArray = Array.from(locationFilters);
@@ -135,7 +138,6 @@ export default function RestaurantFilter({
   function updateFilters(checked, taxonomyFilter, filterType = "") {
     setMapFilters([]);
     if (checked) {
-     
       if (taxonomyFilter === "full-list") {
         setTaxonomyFilters(new Set<string>());
         setFullListChecked(true);
@@ -159,7 +161,6 @@ export default function RestaurantFilter({
       }
     }
     if (!checked) {
-    
       if (taxonomyFilter === "full-list") {
         setTaxonomyFilters(new Set<string>());
         setFullListChecked(false);
@@ -334,14 +335,12 @@ export default function RestaurantFilter({
     };
   });
 
-
-  const handleSearch = (value:string)=>{
-    const values =  allRestaurants.filter(restaurant => 
+  const handleSearch = (value: string) => {
+    const values = allRestaurants.filter((restaurant) =>
       restaurant.node.title.toLowerCase().includes(value.toLowerCase())
-    );   
-    setSearchFilters(values)    
-  }
- 
+    );
+    setSearchFilters(values);
+  };
 
   return (
     <>
@@ -732,14 +731,13 @@ export default function RestaurantFilter({
                                   )
                               );
 
-                              const deSelected =
-                              curatedSelected.filter(
-                                  (value) =>
-                                    !values.some(
-                                      (collection: any) =>
-                                        collection.id === value.id
-                                    )
-                                );
+                              const deSelected = curatedSelected.filter(
+                                (value) =>
+                                  !values.some(
+                                    (collection: any) =>
+                                      collection.id === value.id
+                                  )
+                              );
 
                               if (newSelected.length) {
                                 updateFilters(
@@ -822,14 +820,13 @@ export default function RestaurantFilter({
                         />
                       </div>
                       <div className="xl:w-60 lg:w-40">
-                      <SearchInput
-                      label="Search..."
-                      handleSearch={(value:string)=>{
-                        setSearch(value);
-                        handleSearch(value)
-                      }}
-                      />
-                                
+                        <SearchInput
+                          label="Search..."
+                          handleSearch={(value: string) => {
+                            setSearch(value);
+                            handleSearch(value);
+                          }}
+                        />
                       </div>
                     </div>
                   </div>
@@ -861,7 +858,7 @@ export default function RestaurantFilter({
                             setCuisinesSelected([]);
                             setCuratedSelected([]);
                             setSearchFilters([]);
-                            setSearch('');
+                            setSearch("");
                             setCuisineFilters(new Set<string>());
                             setCuratedCollectionsFilters(new Set<string>());
                           }}

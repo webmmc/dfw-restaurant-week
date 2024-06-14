@@ -35,12 +35,12 @@ export default function Table({ tableHeaders, tableBody}: any) {
                 .filter((item) => item !== "key")
                 .map((item, index, array) => (
                   <td
-                    className={`py-4 border-r whitespace-nowrap text-sm ${
+                    className={`py-4 font-bold border-r whitespace-nowrap text-base ${
                       index === 0
-                        ? "pl-4 pr-3 font-medium text-gray-900 sm:pl-6"
+                        ? "pl-4 pr-3 font-bold text-black-700 sm:pl-6"
                         : index === array.length - 1
-                        ? "relative pl-3 pr-4 font-medium sm:pr-6"
-                        : "px-3 text-gray-500"
+                        ? "relative pl-3 pr-4 font-bold text-black-700 sm:pr-6"
+                        : "px-3 text-black-700"
                     }`}
                     key={item}
                   >

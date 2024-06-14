@@ -1386,6 +1386,11 @@ export async function getRestaurantFilterObjects(preview) {
               restaurantAddress
               longitude
               latitude
+              customIconForMap {
+                mediaItemUrl
+                altText
+              }
+              favoriteRestaurant
               website
               openTable
               openTableLink

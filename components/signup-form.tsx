@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
+import { useRouter } from "next/router";
 
 import GlobalContext from "../context/GlobalContext";
 import CustomReCaptchaComponent from "./CustomRecaptchaComponent";
@@ -56,6 +57,7 @@ const SignupForm = ({ onSubmit }: Props, ref) => {
     resolver: zodResolver(signupFormSchema),
   });
 
+   const router = useRouter()
   const { recaptchav3Token, setRefreshReCaptcha } = useContext(GlobalContext);
 
   // set reCAPTCHA v3 token value on component mount
@@ -152,6 +154,14 @@ const SignupForm = ({ onSubmit }: Props, ref) => {
             className="site-btn site-btn--primary"
           >
             Get updates
+          </button>
+          <button
+            type="button"
+            disabled={isSubmitting}
+            className="site-btn site-btn--primary"
+            onClick={()=>router.push('/restaurants-list')}
+          >
+            View Full List
           </button>
         </form>
       </div>
