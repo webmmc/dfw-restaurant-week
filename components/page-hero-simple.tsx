@@ -1,15 +1,21 @@
 import styles from "./styles/home-hero-carousel.module.scss";
 import Container from "../components/container";
 import Image from "next/image";
+import { useRef } from "react";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify"
+import SignupForm from "../components/signup-form";
+
 
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-export default function SimplePageHero({ pageData }) {
+export default function SimplePageHero({ pageData, slugType= '' }) {
+  const contactFormRef = useRef(null);
   return (
     <Container>
       <section className="my-6 lg:my-12">
-        <div className={(styles.hero || "") + " flex flex-row-reverse"}>
+        <div className={(styles.hero || "") + " flex gap-x-4"}>
           <div
             id="hero-page"
             className={` 
@@ -47,6 +53,66 @@ export default function SimplePageHero({ pageData }) {
               )}
             </div>
           </div>
+              { slugType === 'contact' &&     <div className={styles.charities || ""}>
+            <div
+              className={`
+              ${styles.charities__inner || ""} 
+              ${styles.page__inner || ""}
+              ${styles.reservations__inner || ""}
+            `}
+            >
+              <h2 className={styles.charities__title || ""}>in the know</h2>
+              <>
+                <h3 className="uppercase smaller-line-height mb-6">
+                  <span className="text-red">Get updates on</span> DFW
+                  Restaurant Week
+                </h3>
+                <div className={`${styles.contactFormEmbed || ""}`}>
+                  <SignupForm
+                    ref={contactFormRef}
+                    onSubmit={async (formData) => {
+                      const res = await axios.post(
+                        "https://rw-cms.moritz.work/wp-json/contact-form-7/v1/contact-forms/1396/feedback",
+                        formData,
+                        {
+                          headers: {
+                            "Content-Type": "multipart/form-data",
+                          },
+                        }
+                      );
+                      if (
+                        res.status === 200 &&
+                        res.statusText === "OK" &&
+                        res.data.status === "mail_sent"
+                      ) {
+                        const message =
+                          res.data.message || "Message sent successfully";
+                        toast.success(message);
+                        // reset form
+                        contactFormRef.current.resetForm();
+                      } else {
+                        const status = res.data.status || "error";
+                        const message =
+                          res.data.message || "Something went wrong";
+                        toast.error(status + ": " + message);
+                        console.error("res", res);
+                      }
+                    }}
+                  />
+                </div>
+                <ToastContainer
+                  position="bottom-right"
+                  autoClose={5000}
+                  hideProgressBar={false}
+                  newestOnTop={true}
+                  closeOnClick={true}
+                />
+              </>
+            </div>
+          </div>
+
+              }
+      
         </div>
       </section>
     </Container>

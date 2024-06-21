@@ -20,6 +20,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import "react-toastify/dist/ReactToastify.css";
 
+
 import { getAllPagesWithSlug, getPageAndMorePages } from "../lib/api";
 import { CMS_NAME } from "../lib/constants";
 
@@ -32,7 +33,6 @@ export default function Post({
   preview,
 }) {
   const router = useRouter();
-
   const { slug } = router.query;
 
   const showSpecificWord = slug === "contact";
@@ -68,7 +68,7 @@ export default function Post({
         ) : (
           <>
             <PageAd adData={page?.advertisements?.topAd} />
-            <SimplePageHero pageData={pageData} />
+            <SimplePageHero slugType={slug.toString()} pageData={pageData} />
             <PageContent content={page?.content} />
             <div>
               {showSpecificWord && (
