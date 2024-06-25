@@ -21,6 +21,7 @@ import ReservationModal from "../components/ReservationModal";
 import Map from "../components/map";
 import { MultiSelect } from "react-multi-select-component";
 import SearchInput from "../components/searchInput";
+import logo from "../public/favicon/dsa_logo.png"
 
 export default function RestaurantFilter({
   topAd,
@@ -136,6 +137,12 @@ export default function RestaurantFilter({
     ];
 
   function updateFilters(checked, taxonomyFilter, filterType = "") {
+
+    console.log('taxonomyFilter',taxonomyFilter);
+    console.log('checked',checked);
+    console.log('filterType',filterType);
+    
+
     setMapFilters([]);
     if (checked) {
       if (taxonomyFilter === "full-list") {
@@ -194,6 +201,7 @@ export default function RestaurantFilter({
       }
     }
   }
+  
 
   let filteredRestaurants = restaurants?.edges
     ?.filter(({ node }) => {
@@ -253,6 +261,8 @@ export default function RestaurantFilter({
       return true;
     })
     .filter(({ node }) => {
+      console.log('the node has', node);
+      
       if (search) {
         return searchfilters.some((item) => item?.node?.id === node.id);
       }
@@ -342,6 +352,9 @@ export default function RestaurantFilter({
     setSearchFilters(values);
   };
 
+
+
+  console.log('filteredRestaurants', filteredRestaurants);
   return (
     <>
       <Layout
@@ -634,6 +647,7 @@ export default function RestaurantFilter({
 
                 <div className={styles.dropdown_main_container}>
                   <div className="flex flex-col items-center">
+                    <Image src={logo} height={150} width={150} alt='logo' style={{paddingTop:'15px'}} />
                     <p className="text-center pt-3 font-bold">
                       Powered by Dallas Symphony Orchestra.
                     </p>

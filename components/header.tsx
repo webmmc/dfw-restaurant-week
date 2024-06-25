@@ -140,13 +140,11 @@ export default function Header({ mainMenu, socialMenu, rwLogo, audacyIcon }) {
 
             <ul
               id="menu"
-              className={classNames(styles.menu, "flex flex-wrap justify-end")}
+              className={classNames(styles.menu, styles.hidden_container)}
             >
               {mainMenu?.menuItems.nodes.map((item, index) => (
                 <li
-                  className={classNames(styles.menu__item, {
-                    [styles.menu__first]: index === 0,
-                  })}
+                  className=""
                   key={index}
                 >
                   <Link
@@ -165,7 +163,7 @@ export default function Header({ mainMenu, socialMenu, rwLogo, audacyIcon }) {
 
           {/* Button to toggle itinerary panel */}
           <div className="flex items-end mx-4 my-2 sm:my-0  justify-center sm:justify-end">
-            <button
+            {/* <button
               className={classNames(
                 "site-btn site-btn--primary",
                 styles.itineraryButton
@@ -191,7 +189,7 @@ export default function Header({ mainMenu, socialMenu, rwLogo, audacyIcon }) {
                 </g>
               </svg>
               Itinerary
-            </button>
+            </button> */}
           </div>
         </div>
       </nav>

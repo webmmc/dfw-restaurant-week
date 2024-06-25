@@ -155,14 +155,14 @@ const SignupForm = ({ onSubmit }: Props, ref) => {
           >
             Get updates
           </button>
-          <button
+          {/* <button
             type="button"
             disabled={isSubmitting}
             className="site-btn site-btn--primary"
             onClick={()=>router.push('/restaurants-list')}
           >
             View Full List
-          </button>
+          </button> */}
         </form>
       </div>
     </GoogleReCaptchaProvider>

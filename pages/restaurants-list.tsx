@@ -10,18 +10,13 @@ import Layout from "../components/layout";
 import Table from "../components/table";
 import Image from "next/image";
 import { FiPrinter } from "react-icons/fi";
-import ReactToPrint from 'react-to-print';
-
+import ReactToPrint from "react-to-print";
+import logo from "../public/favicon/mercedesbenzofplano.png";
 
 export default function RestaurantList({
   topAd,
   bottomAd,
-  restuarantFilterObjs: {
-    restaurants,
-    mainMenu,
-    footerMenu,
-    socialMenu,
-  },
+  restuarantFilterObjs: { restaurants, mainMenu, footerMenu, socialMenu },
   preview,
 }) {
   const tableRef = useRef(null);
@@ -42,7 +37,7 @@ export default function RestaurantList({
     {
       name: "Dining Selection",
       position: "common",
-    }
+    },
   ];
 
   const getTableBody = () => {
@@ -51,20 +46,32 @@ export default function RestaurantList({
       restaurants.edges.map((restaurant, index) =>
         currentData.push({
           key: index,
-          logo: <Image src={restaurant.node.restaurantFields?.restaurantLogo.mediaItemUrl} width={150} height={110} alt="" />,
+          logo: (
+            <Image
+              src={
+                restaurant.node.restaurantFields?.restaurantLogo.mediaItemUrl
+              }
+              width={150}
+              height={110}
+              alt=""
+            />
+          ),
           name: restaurant.node.title,
-          weekParticipating: restaurant.node.weeksParticipating.edges?.map((week, index) => {
-            return <p key={index}>{week.node.name}</p>;
-          }),
-          diningSection: restaurant.node.diningSelections.edges?.map((week, index) => {
-            return <p key={index}>{week.node.name}</p>;
-          })
+          weekParticipating: restaurant.node.weeksParticipating.edges?.map(
+            (week, index) => {
+              return <p key={index}>{week.node.name}</p>;
+            }
+          ),
+          diningSection: restaurant.node.diningSelections.edges?.map(
+            (week, index) => {
+              return <p key={index}>{week.node.name}</p>;
+            }
+          ),
         })
       );
     }
     return currentData;
   };
-
 
   return (
     <>
@@ -80,6 +87,20 @@ export default function RestaurantList({
         <Main>
           <PageAd adData={topAd} />
           <PageSeparator optionalHeadline="Restaurants List" />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <Image
+              src={logo}
+              height={180}
+              width={180}
+              alt="logo"
+            />
+          </div>
+
           <p className="text-center font-bold">
             Driven by Mercedes Benz of Plano
           </p>
@@ -93,7 +114,11 @@ export default function RestaurantList({
           <PageAd adData={bottomAd} />
         </Main>
         <ReactToPrint
-          trigger={() => <button className="floating-button"><FiPrinter /></button>}
+          trigger={() => (
+            <button className="floating-button">
+              <FiPrinter />
+            </button>
+          )}
           content={() => tableRef.current}
         />
       </Layout>
