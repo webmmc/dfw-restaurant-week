@@ -142,7 +142,7 @@ const Map = ({ restaurants, handleMarkersChange, isFilterUpdated }) => {
                   marker.favourite
                     ? {
                         url: marker.customImage,
-                        scaledSize: new window.google.maps.Size(34, 34), 
+                        scaledSize: new window.google.maps.Size(26, 37), 
                       }
                     : undefined
                 }
