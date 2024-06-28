@@ -118,7 +118,7 @@ export const getStaticProps: GetStaticProps = async ({
         link: "https://www.uber.com/us/en/u/uber-one/",
         largeBanner: {
           mediaItemUrl:
-            "https://rw-cms.moritz.work/wp-content/uploads/2023/07/Uber_Restaurant-Week-Ads_main-top-1.jpg",
+            "https://restaurantcms2.wpenginepowered.com/wp-content/uploads/2023/07/Uber_Restaurant-Week-Ads_main-top-1.jpg",
         },
       },
     };
@@ -129,7 +129,7 @@ export const getStaticProps: GetStaticProps = async ({
         link: "https://www.uber.com/us/en/u/uber-one/",
         largeBanner: {
           mediaItemUrl:
-            "https://rw-cms.moritz.work/wp-content/uploads/2023/07/Uber_Restaurant-Week-Ads_driving-directions-3.jpg",
+            "https://restaurantcms2.wpenginepowered.com/wp-content/uploads/2023/07/Uber_Restaurant-Week-Ads_driving-directions-3.jpg",
         },
       },
     };
@@ -140,7 +140,7 @@ export const getStaticProps: GetStaticProps = async ({
         link: "https://www.uber.com/us/en/u/uber-one/",
         largeBanner: {
           mediaItemUrl:
-            "https://rw-cms.moritz.work/wp-content/uploads/2023/07/Uber_Restaurant-Week-Ads_main-bottom-2-1.jpg",
+            "https://restaurantcms2.wpenginepowered.com/wp-content/uploads/2023/07/Uber_Restaurant-Week-Ads_main-bottom-2-1.jpg",
         },
       },
     };
