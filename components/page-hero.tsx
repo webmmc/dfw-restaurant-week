@@ -104,7 +104,7 @@ export default function HomeHeroCarousel({ restaurantData }) {
                 <div className={`${styles.opentablesection || ""}`}>
                   <Image
                     className={`${styles.page__open || ""} mt-8 mb-4`}
-                    src="https://rw-cms.moritz.work/wp-content/uploads/2023/05/opentable-logo-153e80.png"
+                    src="https://restaurantcms2.wpenginepowered.com/wp-content/uploads/2023/05/opentable-logo-153e80.png"
                     alt="Open Table Logo"
                     width={1920}
                     height={1920}

@@ -27,7 +27,7 @@ export default function ContactUs({ preview }) {
           ref={contactFormRef}
           onSubmit={async (formData) => {
             const res = await axios.post(
-              "https://rw-cms.moritz.work/wp-json/contact-form-7/v1/contact-forms/536/feedback",
+              "https://restaurantcms2.wpenginepowered.com/wp-json/contact-form-7/v1/contact-forms/536/feedback",
               formData,
               {
                 headers: {
