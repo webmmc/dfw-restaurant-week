@@ -93,12 +93,12 @@ export default function RestaurantList({
               justifyContent: "center",
             }}
           >
-            <Image
+            {/* <Image
               src={logo}
               height={180}
               width={180}
               alt="logo"
-            />
+            /> */}
           </div>
 
           <p className="text-center font-bold">

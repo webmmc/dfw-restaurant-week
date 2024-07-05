@@ -647,7 +647,7 @@ export default function RestaurantFilter({
 
                 <div className={styles.dropdown_main_container}>
                   <div className="flex flex-col items-center">
-                    <Image src={logo} height={150} width={150} alt='logo' style={{paddingTop:'15px'}} />
+                    {/* <Image src={logo} height={150} width={150} alt='logo' style={{paddingTop:'15px'}} /> */}
                     <p className="text-center pt-3 font-bold">
                       Powered by Dallas Symphony Orchestra.
                     </p>
