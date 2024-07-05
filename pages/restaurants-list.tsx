@@ -101,9 +101,9 @@ export default function RestaurantList({
             /> */}
           </div>
 
-          <p className="text-center font-bold">
+          {/*<p className="text-center font-bold">
             Driven by Mercedes Benz of Plano
-          </p>
+          </p>*/}
           <div ref={tableRef}>
             <Table
               tableBody={getTableBody()}

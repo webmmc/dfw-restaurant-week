@@ -493,8 +493,8 @@ export default function RestaurantFilter({
                       className={`w-full lg:w-auto ${styles.siteFiltersHeading} flex justify-center lg:px-8`}
                     >
                       MAP VIEW FILTER
-                      <span className="hidden md:inline-block">
-                        &nbsp; BY CUISINES, CURATED COLLECTIONS & WEEK
+                      <span className="hidden md:inline-block" style={{paddingLeft:'5px'}}>
+                        BY CUISINE, CURATED COLLECTION & WEEK
                         PARTICIPATING
                       </span>
                     </div>
@@ -648,9 +648,9 @@ export default function RestaurantFilter({
                 <div className={styles.dropdown_main_container}>
                   <div className="flex flex-col items-center">
                     {/* <Image src={logo} height={150} width={150} alt='logo' style={{paddingTop:'15px'}} /> */}
-                    <p className="text-center pt-3 font-bold">
+                    {/*<p className="text-center pt-3 font-bold">
                       Powered by Dallas Symphony Orchestra.
-                    </p>
+                    </p>*/}
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 sm:gap-2 md:gap-x-16 lg:grid-cols-4 lg:gap-x-16 xl:gap-x-30 pb-10 ">
                       <div className="xl:w-60 lg:w-40 sm:w-64">
                         <MultiSelect
