@@ -115,10 +115,10 @@ export const getStaticProps: GetStaticProps = async ({
   if (!data.restaurant?.advertisements?.topAd) {
     data.restaurant.advertisements.topAd = {
       adsFields: {
-        link: "https://www.uber.com/us/en/u/uber-one/",
+        link: "https://www.ubereats.com/uber-one",
         largeBanner: {
           mediaItemUrl:
-            "https://restaurantcms2.wpenginepowered.com/wp-content/uploads/2023/07/Uber_Restaurant-Week-Ads_main-top-1.jpg",
+            "https://restaurantcms2.wpenginepowered.com/wp-content/uploads/2023/06/2024-DFWRW-UBER-EATS-DFWRW-PORTAL-WEBSITE-AD-5-1230X420.jpg",
         },
       },
     };
@@ -137,10 +137,10 @@ export const getStaticProps: GetStaticProps = async ({
   if (!data.restaurant?.advertisements?.bottomAd) {
     data.restaurant.advertisements.bottomAd = {
       adsFields: {
-        link: "https://www.uber.com/us/en/u/uber-one/",
+        link: "https://www.ubereats.com/uber-one",
         largeBanner: {
           mediaItemUrl:
-            "https://restaurantcms2.wpenginepowered.com/wp-content/uploads/2023/07/Uber_Restaurant-Week-Ads_main-bottom-2-1.jpg",
+            "https://restaurantcms2.wpenginepowered.com/wp-content/uploads/2023/06/2024-DFWRW-UBER-MAIN-BOTTOM-1230X420.jpg",
         },
       },
     };
