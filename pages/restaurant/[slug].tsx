@@ -126,6 +126,7 @@ export const getStaticProps: GetStaticProps = async ({
   if (!data.restaurant?.advertisements?.midAd) {
     data.restaurant.advertisements.midAd = {
       adsFields: {
+        link: "https://www.audacy.com/krld",
         largeBanner: {
           mediaItemUrl:
             "https://restaurantcms2.wpenginepowered.com/wp-content/uploads/2024/07/2024-KRLD-AM-RW-AD-1-1230X420.jpg",
