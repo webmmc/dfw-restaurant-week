@@ -21,7 +21,7 @@ export default function HomeHeroCarousel({ restaurantData }) {
               styles.carousel_reverse_not || ""
             } `}
           >
-            <a
+            {/*<a
               className={`
                   ${styles.carousel__innerslide || ""} 
                   ${styles.this__ispage || ""}
@@ -30,7 +30,7 @@ export default function HomeHeroCarousel({ restaurantData }) {
               href="/pdf/2023-DFW-RESTAURANT-WEEK-PRINTABLE-LIST-UPDATED-OCT-2023.pdf"
               target="_blank"
               download
-            >
+            >*/}
               <Image
                 className={`${styles.image || ""} ${
                   styles.imageReservations || ""
@@ -40,7 +40,7 @@ export default function HomeHeroCarousel({ restaurantData }) {
                 width={1920}
                 height={1920}
               />
-            </a>
+            {/*</a>*/}
           </div>
 
           <div className={styles.charities || ""}>
