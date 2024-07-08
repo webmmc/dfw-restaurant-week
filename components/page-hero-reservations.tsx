@@ -27,7 +27,9 @@ export default function HomeHeroCarousel({ restaurantData }) {
                   ${styles.this__ispage || ""}
                   larger-link glisten
                   `}
-              href="/reservations/"
+              href="/pdf/2023-DFW-RESTAURANT-WEEK-PRINTABLE-LIST-UPDATED-OCT-2023.pdf"
+              target="_blank"
+              download
             >
               <Image
                 className={`${styles.image || ""} ${
