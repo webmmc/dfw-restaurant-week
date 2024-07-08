@@ -843,6 +843,15 @@ export default function RestaurantFilter({
                         />
                       </div>
                     </div>
+                    <button
+                      type="button"
+                      disabled={isSubmitting}
+                      className="site-btn site-btn--primary"
+                      onClick={()=>router.push('/restaurants-list')}
+                      style={{marginBottom:'2.5rem'}}
+                    >
+                      View Full List
+                    </button>
                   </div>
                 </div>
                 <Map
