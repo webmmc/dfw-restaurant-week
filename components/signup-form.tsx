@@ -38,6 +38,7 @@ const signupFormSchema = z.object({
     }), // "_wpcf7_recaptcha_response
   // honeypot
   _gotcha: z.string().max(0),
+  _wpcf7_unit_tag:z.string(),
 });
 
 type SignupFormInputs = z.infer<typeof signupFormSchema>;
@@ -117,6 +118,7 @@ const SignupForm = ({ onSubmit }: Props, ref) => {
               </span>
             )}
           </div>
+          <input type="hidden" name="_wpcf7_unit_tag" value="7322e19"  {...register("_wpcf7_unit_tag")} />
           <input type="hidden" name="_gotcha" {...register("_gotcha")} />
           {/* reCAPTCHA v3 */}
           {/* This will intialize the recaptcha component */}

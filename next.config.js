@@ -37,6 +37,18 @@ module.exports = withPlugins([], {
         protocol: 'http',
         hostname: 'rw-cms.moritz.work',
       },
+      {
+        protocol: 'http',
+        hostname: 'restaurantcms2.wpenginepowered.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'restaurantcms2.wpenginepowered.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.restaurantcms2.wpenginepowered.com',
+      },
     ],
     unoptimized: true,
   },
