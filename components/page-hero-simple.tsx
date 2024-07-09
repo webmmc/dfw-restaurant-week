@@ -72,7 +72,7 @@ export default function SimplePageHero({ pageData, slugType= '' }) {
                     ref={contactFormRef}
                     onSubmit={async (formData) => {
                       const res = await axios.post(
-                        "https://restaurantcms2.wpenginepowered.com/wp-json/contact-form-7/v1/contact-forms/7322e19/feedback",
+                        "https://restaurantcms2.wpenginepowered.com/wp-json/contact-form-7/v1/contact-forms/1396/feedback",
                         formData,
                         {
                           headers: {
