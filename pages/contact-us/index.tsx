@@ -37,7 +37,6 @@ export default function ContactUs({ preview }) {
             );
             if (
               res.status === 200 &&
-              res.statusText === "OK" &&
               res.data.status === "mail_sent"
             ) {
               const message = res.data.message || "Message sent successfully";

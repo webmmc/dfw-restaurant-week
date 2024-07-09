@@ -88,7 +88,6 @@ export default function Post({
                         );
                         if (
                           res.status === 200 &&
-                          res.statusText === "OK" &&
                           res.data.status === "mail_sent"
                         ) {
                           const message =
