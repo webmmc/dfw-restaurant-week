@@ -35,10 +35,9 @@ export default function RelatedPages({ relatedPages }) {
             const isExpanded = expandedSummaries[index];
             const summary = page?.pageFields?.summary || "";
             const displayText = isExpanded ? summary : truncateText(summary, SUMMARY_CHAR_LIMIT);
-
             return (
               <div key={page?.id} className={styles.page + " glisten larger-link"}>
-                <Link href={`/${page?.slug}`}>
+                <Link href={page.pageFields.externalUrl ?? `/${page?.slug}`} target={page.pageFields.externalUrl ? "_blank" : "_self"}>
                   <Image
                     src={page?.featuredImage?.node?.mediaItemUrl}
                     alt={page?.featuredImage?.node?.altText ?? page.title ?? ""}

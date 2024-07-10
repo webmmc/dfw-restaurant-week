@@ -1,12 +1,10 @@
-import styles from "../components/styles/restaurant-filter.module.scss";
-
-export default function Table({ tableHeaders, tableBody }) {
+export default function PrintTable({ tableHeaders, tableBody}: any) {
   function renderTableHead() {
     if (tableHeaders) {
       return (
-        <thead className="bg-gray-50" style={{ backgroundColor: 'lightgray' }}>
+        <thead className="bg-gray-50" style={{backgroundColor:'lightgray'}} >
           <tr>
-            {tableHeaders.map((head, index) => (
+            {tableHeaders.map((head: any, index: any) => (
               <th
                 className={`text-left border-r py-6 ${
                   head.position === "first"
@@ -31,8 +29,8 @@ export default function Table({ tableHeaders, tableBody }) {
     if (tableBody && tableBody.length > 0) {
       return (
         <tbody className="divide-y divide-gray-200 bg-white">
-          {tableBody.map((record) => (
-            <tr key={record.key}>
+          {tableBody.map((record: any) => (
+            <tr key={record.id}>
               {Object.keys(record)
                 .filter((item) => item !== "key")
                 .map((item, index, array) => (
@@ -61,8 +59,9 @@ export default function Table({ tableHeaders, tableBody }) {
     return null;
   };
 
+
   const renderNotFound = () => {
-    if (tableBody && tableBody.length <= 0) {
+    if (tableBody && tableBody.length <= 0 ) {
       return (
         <div className="py-20 text-center text-gray-500 w-full">
           <p>No Records found</p>
@@ -71,49 +70,16 @@ export default function Table({ tableHeaders, tableBody }) {
     }
   };
 
-  const renderMobileTable = () => {
-    if (tableBody && tableBody.length > 0) {
-      return (
-        <div className="border border-gray-300 divide-y divide-gray-200 bg-white rounded-lg">
-          {tableBody.map((record) => (
-            <div key={record.key} className="py-4 text-center">
-              {Object.keys(record)
-                .filter((item) => item !== "key")
-                .map((item, index, array) => (
-                  <div key={item} className="px-4 py-2 flex flex-col items-center">
-                    <span className="block text-black-700 font-bold">
-                      {record[item] && record[item] !== "N/A"
-                        ? record[item]
-                        : record[item] === false
-                        ? null
-                        : "-"}
-                    </span>
-                    {(index < array.length - 1) && item !== "logo" && (
-                      <hr className="my-2 w-3/6" />
-                    )}
-                  </div>
-                ))}
-            </div>
-          ))}
-        </div>
-      );
-    }
-    return null;
-  };
-
   return (
     <div>
       <div className="mx-auto max-w-[1500px] flow-root">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
             <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
-              <table className={`min-w-full divide-y divide-gray-200 hidden lg:table ${styles.printTable}`}>
+              <table className="min-w-full divide-y divide-gray-00">
                 {renderTableHead()}
                 {renderTableBody()}
               </table>
-              <div className={`lg:hidden ${styles.printHidden}`}>
-                {renderMobileTable()}
-              </div>
             </div>
             {renderNotFound()}
           </div>
