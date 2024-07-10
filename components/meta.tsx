@@ -34,6 +34,7 @@ export default function Meta() {
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       <meta name="description" content={`DFW Restaurant Week`} />
       <meta property="og:image" content={HOME_OG_IMAGE_URL} />
+      <script async src='//pixel.mathtag.com/event/js?mt_id=1655121&mt_adid=430216&mt_exem=&mt_excl=&v1=&v2=&v3=&s1=&s2=&s3='></script>
     </Head>
   );
 }
