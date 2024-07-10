@@ -229,3 +229,21 @@ $gray: #b1b1b1;
     background: $red;
   }
 }
+
+@media print {
+  .hidden {
+    display: none !important;
+  }
+
+  .lgTable {
+    display: table !important;
+  }
+
+  .printTable {
+    display: table !important;
+  }
+
+  .printHidden {
+    display: none !important;
+  }
+}

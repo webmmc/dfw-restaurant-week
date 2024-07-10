@@ -934,6 +934,7 @@ export async function getHomePageData(preview) {
                 }
                 pageFields{
                   summary
+                  externalUrl
                 }
               }
             }

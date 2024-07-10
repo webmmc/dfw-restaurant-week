@@ -101,10 +101,10 @@ export default function RestaurantList({
             /> */}
           </div>
 
-          {/*<p className="text-center font-bold">
+          {/* <p className="text-center font-bold">
             Driven by Mercedes Benz of Plano
-          </p>*/}
-          <div ref={tableRef}>
+          </p> */}
+          <div ref={tableRef} className="md:block flex justify-center mx-5">
             <Table
               tableBody={getTableBody()}
               tableHeaders={restaurantsTHeaders}
