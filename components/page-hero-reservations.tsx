@@ -26,7 +26,7 @@ export default function HomeHeroCarousel({ restaurantData }) {
                   ${styles.this__ispage || ""}
                   larger-link glisten
                   `}
-              href="/restaurants-list"
+              href="/reservations"
 
 
             >
