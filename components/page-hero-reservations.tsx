@@ -7,7 +7,7 @@ import SignupForm from "../components/signup-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-
+import Link from 'next/link';
 export default function HomeHeroCarousel({ restaurantData }) {
   const contactFormRef = useRef(null);
 
@@ -17,30 +17,28 @@ export default function HomeHeroCarousel({ restaurantData }) {
         <div className={`${styles.hero || ""} flex `}>
           <div
             id="hero-page"
-            className={`${styles.carousel || ""} ${
-              styles.carousel_reverse_not || ""
-            } `}
+            className={`${styles.carousel || ""} ${styles.carousel_reverse_not || ""
+              } `}
           >
-            <a
+            <Link
               className={`
                   ${styles.carousel__innerslide || ""} 
                   ${styles.this__ispage || ""}
                   larger-link glisten
                   `}
               href="/restaurants-list"
-              
-              
+
+
             >
               <Image
-                className={`${styles.image || ""} ${
-                  styles.imageReservations || ""
-                }`}
+                className={`${styles.image || ""} ${styles.imageReservations || ""
+                  }`}
                 src={restaurantData.heroImage}
                 alt={restaurantData.title ?? ""}
                 width={1920}
                 height={1920}
               />
-            </a>
+            </Link>
           </div>
 
           <div className={styles.charities || ""}>
