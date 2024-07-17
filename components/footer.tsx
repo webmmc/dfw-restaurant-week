@@ -8,6 +8,7 @@ export default function Footer({ footerMenu }) {
   return (
     <footer className={` ${styles.footer || ""} mt-20`}>
       <Container>
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TBJGXQ83" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div className={"py-6 lg:py-10 text-center"}>
           <div
             className={"flex flex-row flex-wrap items-center justify-center"}
