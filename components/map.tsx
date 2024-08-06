@@ -12,6 +12,8 @@ const Map = ({ restaurants, handleMarkersChange, isFilterUpdated }) => {
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [markers, setMarkers] = useState([]);
   const [map, setMap] = useState(null);
+  const [mapCenter, setMapCenter] = useState({ lat: 0, lng: 0 });
+  const [mapZoom, setMapZoom] = useState(1);
 
   const mapStyles = {
     height: "400px",
@@ -30,7 +32,7 @@ const Map = ({ restaurants, handleMarkersChange, isFilterUpdated }) => {
       });
       map.fitBounds(bounds);
     }
-  }, [map, markers, restaurants, selectedMarker]);
+  }, [map, markers, restaurants]);
 
   useEffect(() => {
     if (map && restaurants.length) {
@@ -59,6 +61,7 @@ const Map = ({ restaurants, handleMarkersChange, isFilterUpdated }) => {
 
   const resetMap = () => {
     handleMarkersChange([]);
+    setSelectedMarker(null);
   };
 
   const searchMap = () => {
@@ -71,7 +74,23 @@ const Map = ({ restaurants, handleMarkersChange, isFilterUpdated }) => {
     }
   };
 
-  const buttonStyles: React.CSSProperties = {
+  const onMarkerClick = (marker) => {
+    if (map) {
+      setMapCenter(map.getCenter().toJSON());
+      setMapZoom(map.getZoom());
+    }
+    setSelectedMarker(marker);
+  };
+
+  const onCloseInfoWindow = () => {
+    setSelectedMarker(null);
+    if (map) {
+      map.setCenter(mapCenter);
+      map.setZoom(mapZoom);
+    }
+  };
+
+  const buttonStyles = {
     color: "black",
     fontWeight: 600,
     fontSize: "16px",
@@ -80,7 +99,7 @@ const Map = ({ restaurants, handleMarkersChange, isFilterUpdated }) => {
     padding: "4px",
   };
 
-  const buttonContainerStyles: React.CSSProperties = {
+  const buttonContainerStyles:any = {
     position: "absolute",
     left: 12,
     zIndex: 1,
@@ -92,7 +111,7 @@ const Map = ({ restaurants, handleMarkersChange, isFilterUpdated }) => {
     border: "2px solid #da3743",
   };
 
-  const dynamicStyles:any = `
+  const dynamicStyles = `
     .gm-style-iw-d {
       overflow: hidden !important;
       height: max-content !important;
@@ -125,8 +144,8 @@ const Map = ({ restaurants, handleMarkersChange, isFilterUpdated }) => {
           <style>{dynamicStyles}</style>
           <GoogleMap
             mapContainerStyle={mapStyles}
-            zoom={1}
-            center={{ lat: 0, lng: 0 }}
+            zoom={mapZoom}
+            center={mapCenter}
             onLoad={onLoad}
             options={{
               zoomControl: true,
@@ -142,25 +161,25 @@ const Map = ({ restaurants, handleMarkersChange, isFilterUpdated }) => {
                   marker.favourite
                     ? {
                         url: marker.customImage,
-                        scaledSize: new window.google.maps.Size(50, 50), 
+                        scaledSize: new window.google.maps.Size(50, 50),
                       }
                     : undefined
                 }
                 position={{ lat: marker.lat, lng: marker.lng }}
-                onClick={() => setSelectedMarker(marker)}
+                onClick={() => onMarkerClick(marker)}
               />
             ))}
             {selectedMarker && (
               <InfoWindow
                 position={{ lat: selectedMarker.lat, lng: selectedMarker.lng }}
-                onCloseClick={() => setSelectedMarker(null)}
+                onCloseClick={onCloseInfoWindow}
               >
                 {selectedMarker.image && (
                   <div className="flex flex-col items-center ">
                     <div className="h-32">
                       <Image
                         className="object-cover"
-                        src={ selectedMarker.image}
+                        src={selectedMarker.image}
                         alt={selectedMarker?.altText}
                         width={200}
                         height={200}
