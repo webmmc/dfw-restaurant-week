@@ -138,9 +138,7 @@ export default function RestaurantFilter({
 
   function updateFilters(checked, taxonomyFilter, filterType = "") {
 
-    console.log('taxonomyFilter',taxonomyFilter);
-    console.log('checked',checked);
-    console.log('filterType',filterType);
+    
     
 
     setMapFilters([]);
@@ -261,7 +259,7 @@ export default function RestaurantFilter({
       return true;
     })
     .filter(({ node }) => {
-      console.log('the node has', node);
+      // console.log('the node has', node);
       
       if (search) {
         return searchfilters.some((item) => item?.node?.id === node.id);
@@ -354,7 +352,6 @@ export default function RestaurantFilter({
 
 
 
-  console.log('filteredRestaurants', filteredRestaurants);
   return (
     <>
       <Layout
