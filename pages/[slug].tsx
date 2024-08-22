@@ -146,8 +146,12 @@ export const getStaticProps: GetStaticProps = async ({
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const allPages = await getAllPagesWithSlug();
+  const paths = allPages.edges
+    .map(({ node }) => `/${node.slug}`)
+    .filter((path) => path !== '/uber-eats-week');
+
   return {
-    paths: allPages?.edges.map(({ node }) => `/${node.slug}`) || [],
+    paths: paths || [],
     fallback: false,
   };
 };
