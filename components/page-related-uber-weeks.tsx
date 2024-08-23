@@ -32,7 +32,7 @@ export default function RelatedPages({ relatedPages }) {
           {relatedPages.map((page, index) => {
             const isExpanded = expandedSummaries[index];
             const description = page?.description || "";
-            const displayText = isExpanded ? description : truncateText(description, SUMMARY_CHAR_LIMIT);
+            const displayText = isExpanded ? description : description;
             return (
               <div key={page?.thumbnail?.id} className={styles.page + " glisten larger-link"}>
                 <Link href={page?.link}>
