@@ -7,21 +7,21 @@ import { getUberPageData } from "../lib/api";
 
 import HomeHeroCarousel from "../components/home-hero-carousel";
 import PageContent from "../components/page-content";
-import RelatedPages from "../components/page-related";
+import RelatedPages from "../components/page-related-uber-weeks";
 import PageSeparator from "../components/page-separator";
 import PageAd from "../components/page-ad";
 
 export default function Index({
-  homeData: { content, homepageFields, pageFields, advertisements },
+  homeData: { content, homepageFields, pageFields, advertisements, uberEatsWeekFields },
   mainMenu,
   footerMenu,
   socialMenu,
   preview,
 }) {
   const { charities, featureSlider } = homepageFields;
-  const {  relatedPages } = pageFields;
   const { topAd, midAd, bottomAd } = advertisements;
-
+  const { uberEatsFeaturedLinks} = uberEatsWeekFields
+  
   return (
     <Layout
       mainMenu={mainMenu}
@@ -40,7 +40,7 @@ export default function Index({
         />
         <PageContent content={content} />
         <PageAd adData={midAd} />
-        <RelatedPages relatedPages={relatedPages} />
+        <RelatedPages relatedPages={uberEatsFeaturedLinks} />
         <PageSeparator optionalHeadline="presented by" />
         <PageAd adData={bottomAd} />
       </Main>
