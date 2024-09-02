@@ -58,7 +58,7 @@ export default function Index({
           sliderData={featureSlider}
           featuredCharities={charities}
         />
-        {/* <PageContent content={content} /> */}
+        <PageContent content={content} />
         <PageSeparator optionalHeadline="featuring" />
         <PageAd adData={midAd} />
         <RelatedPages relatedPages={relatedPages} />

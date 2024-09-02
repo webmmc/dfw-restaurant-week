@@ -21,9 +21,9 @@ export default function RelatedPages({ relatedPages }) {
     }));
   };
 
-  // if (!relatedPages) {
-  //   return <div></div>;
-  // }
+  if (!relatedPages) {
+    return <div></div>;
+  }
 
   return (
     <Container>
