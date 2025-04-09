@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { IoSearchOutline } from "react-icons/io5";
+// import { IoSearchOutline } from "react-icons/io5";
 
 interface ISearchInput {
     label?: string;
@@ -26,9 +26,9 @@ const SearchInput = ({ label, inputStyles, handleSearch }: ISearchInput) => {
           setValue(e.target.value)
         }}
       />
-      <div className="absolute inset-y-0 right-0 flex items-center pr-1">
+      {/* <div className="absolute inset-y-0 right-0 flex items-center pr-1">
         <IoSearchOutline onClick={() => handleSearch && handleSearch(value)} className="h-auto w-7 cursor-pointer" />
-      </div>
+      </div> */}
     </div>
   );
 };

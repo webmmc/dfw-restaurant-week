@@ -1,5 +1,4 @@
 {
-  "extends": "@repo/typescript-config/react-library.json",
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -14,10 +13,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true,
-    "baseUrl": ".",
-    "paths": { "@repo/ui/*": ["./src/*"], "react": ["./node_modules/@types/react"] }
+    "incremental": true
   },
-  "include": ["src", "next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "functions/**/*", "functions/*"]
 }
