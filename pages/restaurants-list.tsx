@@ -115,8 +115,9 @@ export default function RestaurantList({
         </Main>
         <ReactToPrint
           trigger={() => (
-            <button className="floating-button">
-              <FiPrinter />
+            <button className="floating-button" style={{height:'auto', width: 'auto', padding:'0.5rem 1rem', borderRadius:'0'}}>
+              {/* <FiPrinter /> */}
+              Print
             </button>
           )}
           content={() => tableRef.current}
