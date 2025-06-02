@@ -143,11 +143,20 @@
 
 .sponsor-square{
   float: left;
-  max-width: 250px;
+  width: 25%;
+  display: flex;
+  padding: 0 1rem;
 
   &:first-of-type{
     float: none;
     max-width: none;
+    display: block;
+    width: 100%;
+  }
+
+  img{
+    margin: auto;
+    max-width: 250px;
   }
 }
 
