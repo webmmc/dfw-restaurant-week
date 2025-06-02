@@ -1459,6 +1459,14 @@
     img{
       max-width: 250px !important;
     }
+
+    @media(max-width: 1024px){
+      width: 33.333333%;
+    }
+
+    @media(max-width: 768px){
+      width: 100%;
+    }
   }
 
   .wp-block-image figcaption {
