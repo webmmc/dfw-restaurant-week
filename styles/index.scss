@@ -141,6 +141,16 @@
   }
 }
 
+.sponsor-square{
+  float: left;
+  max-width: 250px;
+
+  &:first-of-type{
+    float: none;
+    max-width: none;
+  }
+}
+
 // input[type="checkbox"] {
 //   filter: sepia(100%) brightness(80%) hue-rotate(170deg) saturate(70%) contrast(300%);
 // }
