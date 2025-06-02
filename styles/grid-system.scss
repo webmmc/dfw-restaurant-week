@@ -1439,6 +1439,28 @@
     width: unset !important;
   }
 
+  .wp-block-image.sponsor-square {
+    float: left;
+    width: 25%;
+    display: flex;
+    padding: 0 1rem;
+
+    &:first-of-type{
+      float: none;
+      display: block;
+      width: 100%;
+
+      img{
+        max-width: none !important;
+      }
+    }
+  }
+
+  .wp-block-image.sponsor-square img {
+    margin: auto;
+    max-width: 250px !important;
+  }
+
   .wp-block-image figcaption {
     line-height: 1.5rem;
     font-size: 1.1rem;

@@ -141,28 +141,6 @@
   }
 }
 
-html .sponsor-square{
-  float: left;
-  width: 25%;
-  display: flex;
-  padding: 0 1rem;
-
-  &:first-of-type{
-    float: none;
-    display: block;
-    width: 100%;
-
-    img{
-      max-width: none !important;
-    }
-  }
-
-  img{
-    margin: auto;
-    max-width: 250px !important;
-  }
-}
-
 // input[type="checkbox"] {
 //   filter: sepia(100%) brightness(80%) hue-rotate(170deg) saturate(70%) contrast(300%);
 // }
