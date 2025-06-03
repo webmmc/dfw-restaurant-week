@@ -22,6 +22,11 @@ export default function HomeHeroCarousel({
               <div className={`${(styles.carousel__innerslide || "")}  ${(styles.carousel__innersliderelative || "")}`} key={slide?.slideMeta.headline}>
                 {slide?.slideMeta.background && ( // Check if slideMeta.background is set
                   <div className={`${(styles.carousel__imagewrapper || "")}`}>
+                    <a
+                      href={slide?.slideMeta?.link?.url}
+                      target={slide?.slideMeta?.link?.target}
+                      className={`glisten`}
+                    >
                     <Image
                       className={`${styles.image || ""} ${styles.imageRelative || ""}`}
                       src={slide.slideMeta.background.mediaItemUrl}
@@ -30,9 +35,10 @@ export default function HomeHeroCarousel({
                       height={534}
                       priority={index === 0 ? true : false}
                     />
+                    </a>
                   </div>
                 )}
-                <a
+                {/* <a
                   href={slide?.slideMeta?.link?.url}
                   target={slide?.slideMeta?.link?.target}
                   className={`
@@ -47,7 +53,7 @@ export default function HomeHeroCarousel({
                   <div>{slide?.text ?? ""}</div>
                   <hr />
                   <p className="site-btn site-btn--text px-0 font-sm">{slide?.slideMeta?.link?.title}</p>
-                </a>
+                </a> */}
               </div>
             ))}
 
