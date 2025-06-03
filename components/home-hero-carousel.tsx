@@ -25,7 +25,7 @@ export default function HomeHeroCarousel({
                     <a
                       href={slide?.slideMeta?.link?.url}
                       target={slide?.slideMeta?.link?.target}
-                      className={`glisten`}
+                      className={`glisten h-full block`}
                     >
                     <Image
                       className={`${styles.image || ""} ${styles.imageRelative || ""}`}
