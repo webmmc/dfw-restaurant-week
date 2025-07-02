@@ -1432,6 +1432,10 @@
     margin: 0;
   }
 
+  .wp-block-image figcaption{
+    padding-top: 1rem;
+  }
+
   .wp-block-image img {
     max-width: 100% !important;
     height: unset !important;
