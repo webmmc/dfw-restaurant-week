@@ -1439,6 +1439,12 @@
     width: unset !important;
   }
 
+  .wp-block-image.img-full-width {
+    img{
+      width: 100% !important;
+    }
+  }
+
   .wp-block-image.sponsor-square {
     float: none;
     width: 100%;
