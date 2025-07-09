@@ -118,7 +118,7 @@ export const getStaticProps: GetStaticProps = async ({
         link: "https://www.ubereats.com/uber-one",
         largeBanner: {
           mediaItemUrl:
-            "https://restaurantcms2.wpenginepowered.com/wp-content/uploads/2023/06/2024-DFWRW-UBER-EATS-DFWRW-PORTAL-WEBSITE-AD-5-1230X420.jpg",
+            "https://restaurantcms2.wpenginepowered.com/wp-content/uploads/2025/07/2025-DFWRW-UBER-EATS-CAMPAIGN-VERSION-1-1230X420.jpg",
         },
       },
     };
@@ -126,10 +126,10 @@ export const getStaticProps: GetStaticProps = async ({
   if (!data.restaurant?.advertisements?.midAd) {
     data.restaurant.advertisements.midAd = {
       adsFields: {
-        link: "https://www.dallassymphony.org/ticket-packages/?utm_source=Audacy&utm_medium=DFWRW&utm_campaign=CYO",
+        link: "https://www.audacy.com/krld",
         largeBanner: {
           mediaItemUrl:
-            "https://restaurantcms2.wpenginepowered.com/wp-content/uploads/2024/08/DSO-RW-CYO-Ads.jpg",
+            "https://restaurantcms2.wpenginepowered.com/wp-content/uploads/2025/07/2025-DFWRW-RESTAURANT-LISTING-KRLD-AM-MIDDLE-AD-1230X420.jpg",
         },
       },
     };
@@ -140,7 +140,7 @@ export const getStaticProps: GetStaticProps = async ({
         link: "https://www.ubereats.com/uber-one",
         largeBanner: {
           mediaItemUrl:
-            "https://restaurantcms2.wpenginepowered.com/wp-content/uploads/2023/06/2024-DFWRW-UBER-MAIN-BOTTOM-1230X420.jpg",
+            "https://restaurantcms2.wpenginepowered.com/wp-content/uploads/2025/07/2025-DFWRW-UBER-ONE-CAMPAIGN-VERSION-1-1230X420-R1.jpg",
         },
       },
     };

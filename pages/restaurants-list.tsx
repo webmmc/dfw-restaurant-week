@@ -133,7 +133,7 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
       link: "https://www.ubereats.com/uber-one",
       largeBanner: {
         mediaItemUrl:
-          "https://restaurantcms2.wpenginepowered.com/wp-content/uploads/2023/06/2024-DFWRW-UBER-EATS-DFWRW-PORTAL-WEBSITE-AD-5-1230X420.jpg",
+          "https://restaurantcms2.wpenginepowered.com/wp-content/uploads/2025/07/2025-DFWRW-UBER-EATS-CAMPAIGN-VERSION-3-1230X420.jpg",
       },
     },
   };
@@ -142,7 +142,7 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
       link: "https://www.ubereats.com/uber-one",
       largeBanner: {
         mediaItemUrl:
-          "https://restaurantcms2.wpenginepowered.com/wp-content/uploads/2023/06/2024-DFWRW-UBER-MAIN-BOTTOM-1230X420.jpg",
+          "https://restaurantcms2.wpenginepowered.com/wp-content/uploads/2025/07/2025-DFWRW-UBER-ONE-CAMPAIGN-VERSION-3-1230X420-R1.jpg",
       },
     },
   };
