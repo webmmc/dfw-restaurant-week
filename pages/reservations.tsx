@@ -658,7 +658,16 @@ export default function RestaurantFilter({
                     {/*<p className="text-center pt-3 font-bold">
                       Powered by Dallas Symphony Orchestra.
                     </p>*/}
-                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 sm:gap-2 md:gap-x-16 lg:grid-cols-4 lg:gap-x-16 xl:gap-x-30 pb-10 " style={{paddingTop:'2.5rem'}}>
+                    <div className="flex items-center justify-center flex-wrap grid-cols-1 gap-4 sm:grid-cols-1 sm:gap-2 md:gap-x-16 lg:grid-cols-4 lg:gap-x-16 xl:gap-x-30 pb-10 " style={{paddingTop:'2.5rem'}}>
+                      <div className="w-full pb-8">
+                        <SearchInput
+                          label="Search..."
+                          handleSearch={(value: string) => {
+                            setSearch(value);
+                            handleSearch(value);
+                          }}
+                        />
+                      </div>
                       <div className="xl:w-60 lg:w-40 sm:w-64">
                         <MultiSelect
                           options={cuisinesOptions}
@@ -897,15 +906,6 @@ export default function RestaurantFilter({
                           labelledBy="Week Participating"
                           overrideStrings={{
                             selectSomeItems: "Week Participating",
-                          }}
-                        />
-                      </div>
-                      <div className="xl:w-60 lg:w-40">
-                        <SearchInput
-                          label="Search..."
-                          handleSearch={(value: string) => {
-                            setSearch(value);
-                            handleSearch(value);
                           }}
                         />
                       </div>
