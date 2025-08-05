@@ -326,7 +326,7 @@ export default function RestaurantFilter({
     };
   });
 
-  const locationsOptions = cuisines?.edges?.map((item) => {
+  const locationsOptions = locations?.edges?.map((item) => {
     const { node } = item;
     return {
       label: node?.name,
@@ -784,8 +784,6 @@ export default function RestaurantFilter({
                           }}
                         />
                       </div>
-                      </p>*/}
-                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 sm:gap-2 md:gap-x-16 lg:grid-cols-4 lg:gap-x-16 xl:gap-x-30 pb-10 " style={{paddingTop:'2.5rem'}}>
                       <div className="xl:w-60 lg:w-40 sm:w-64">
                         <MultiSelect
                           options={locationsOptions}
@@ -952,6 +950,7 @@ export default function RestaurantFilter({
                             setSearchFilters([]);
                             setSearch("");
                             setCuisineFilters(new Set<string>());
+                            setLocationFilters(new Set<string>());
                             setCuratedCollectionsFilters(new Set<string>());
                           }}
                           onClick={handleCloseClick}
