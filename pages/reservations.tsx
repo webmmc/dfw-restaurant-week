@@ -101,6 +101,7 @@ export default function RestaurantFilter({
   const [weeklyParticipatingSelected, setWeeklyParticipatingSelected] =
     useState([]);
   const [cuisinesSelected, setCuisinesSelected] = useState([]);
+  const [locationsSelected, setLocationsSelected] = useState([]);
   const [curatedSelected, setCuratedSelected] = useState([]);
   const [search, setSearch] = useState<string>("");
   const cuisineFiltersArray = Array.from(cuisineFilters);
@@ -325,6 +326,15 @@ export default function RestaurantFilter({
     };
   });
 
+  const locationsOptions = cuisines?.edges?.map((item) => {
+    const { node } = item;
+    return {
+      label: node?.name,
+      value: node?.slug,
+      id: node?.id,
+    };
+  });
+
   const weeklyParticipatingOptions = weeksParticipating?.edges?.map((item) => {
     const { node } = item;
     return {
@@ -491,7 +501,7 @@ export default function RestaurantFilter({
                     >
                       MAP VIEW FILTER
                       <span className="hidden md:inline-block" style={{paddingLeft:'5px'}}>
-                        BY CUISINE, CURATED COLLECTION & WEEK
+                        BY CUISINE, CURATED COLLECTION, LOCATION & WEEK
                         PARTICIPATING
                       </span>
                     </div>
@@ -774,6 +784,68 @@ export default function RestaurantFilter({
                           }}
                         />
                       </div>
+                      </p>*/}
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 sm:gap-2 md:gap-x-16 lg:grid-cols-4 lg:gap-x-16 xl:gap-x-30 pb-10 " style={{paddingTop:'2.5rem'}}>
+                      <div className="xl:w-60 lg:w-40 sm:w-64">
+                        <MultiSelect
+                          options={locationsOptions}
+                          value={locationsSelected}
+                          hasSelectAll={false}
+                          valueRenderer={(selected, _options) => {
+                            return selected.length
+                              ? `Locations: ${selected.map(
+                                  ({ label }) => label
+                                )}`
+                              : "";
+                          }}
+                          onChange={(values: any) => {
+                            if (!values.length) {
+                              const valuesToExclude: string[] =
+                                locationsOptions.map((item) => item.value);
+                              const ExcludedSet: Set<string> = new Set(
+                                Array.from(taxonomyFilters).filter(
+                                  (value) => !valuesToExclude.includes(value)
+                                )
+                              );
+                              setLocationFilters(new Set<string>());
+                              setTaxonomyFilters(ExcludedSet);
+                            } else {
+                              const newSelected = values.filter(
+                                (value: any) =>
+                                  !locationsSelected.some(
+                                    (location) => location.id === value.id
+                                  )
+                              );
+
+                              const deSelected = locationsSelected.filter(
+                                (value) =>
+                                  !values.some(
+                                    (location: any) => location.id === value.id
+                                  )
+                              );
+
+                              if (newSelected.length) {
+                                updateFilters(
+                                  true,
+                                  newSelected[0]?.value,
+                                  "location"
+                                );
+                              }
+
+                              if (deSelected.length) {
+                                updateFilters(
+                                  false,
+                                  deSelected[0]?.value,
+                                  "location"
+                                );
+                              }
+                            }
+                            setLocationsSelected(values);
+                          }}
+                          labelledBy="Locations"
+                          overrideStrings={{ selectSomeItems: "Locations" }}
+                        />
+                      </div>
                       <div className="xl:w-60 lg:w-40 sm:w-64">
                         <MultiSelect
                           options={weeklyParticipatingOptions}
@@ -875,6 +947,7 @@ export default function RestaurantFilter({
                             updateFilters(e.target.checked, "full-list");
                             setWeeklyParticipatingSelected([]);
                             setCuisinesSelected([]);
+                            setLocationsSelected([]);
                             setCuratedSelected([]);
                             setSearchFilters([]);
                             setSearch("");
