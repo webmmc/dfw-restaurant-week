@@ -668,7 +668,7 @@ export default function RestaurantFilter({
                           }}
                         />
                       </div>
-                      <div className="xl:w-60 lg:w-40 sm:w-full sm:pl-8 sm:pr-8">
+                      <div className="xl:w-60 lg:w-40 sm:w-full md:pl-0 md:pr-0 sm:pl-8 sm:pr-8">
                         <MultiSelect
                           options={cuisinesOptions}
                           value={cuisinesSelected}
@@ -728,7 +728,7 @@ export default function RestaurantFilter({
                           overrideStrings={{ selectSomeItems: "Cuisines" }}
                         />
                       </div>
-                      <div className="xl:w-60 lg:w-40 sm:w-full sm:pl-8 sm:pr-8">
+                      <div className="xl:w-60 lg:w-40 sm:w-full md:pl-0 md:pr-0 sm:pl-8 sm:pr-8">
                         <MultiSelect
                           options={curatedCollectionsOptions}
                           value={curatedSelected}
@@ -793,7 +793,7 @@ export default function RestaurantFilter({
                           }}
                         />
                       </div>
-                      <div className="xl:w-60 lg:w-40 sm:w-full sm:pl-8 sm:pr-8">
+                      <div className="xl:w-60 lg:w-40 sm:w-full md:pl-0 md:pr-0 sm:pl-8 sm:pr-8">
                         <MultiSelect
                           options={locationsOptions}
                           value={locationsSelected}
@@ -853,7 +853,7 @@ export default function RestaurantFilter({
                           overrideStrings={{ selectSomeItems: "Locations" }}
                         />
                       </div>
-                      <div className="xl:w-60 lg:w-40 sm:w-full sm:pl-8 sm:pr-8">
+                      <div className="xl:w-60 lg:w-40 sm:w-full md:pl-0 md:pr-0 sm:pl-8 sm:pr-8">
                         <MultiSelect
                           options={weeklyParticipatingOptions}
                           value={weeklyParticipatingSelected}
