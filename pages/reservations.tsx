@@ -658,7 +658,7 @@ export default function RestaurantFilter({
                     {/*<p className="text-center pt-3 font-bold">
                       Powered by Dallas Symphony Orchestra.
                     </p>*/}
-                    <div className="flex items-center justify-center flex-wrap grid-cols-1 gap-4 sm:grid-cols-1 sm:gap-2 md:gap-x-16 lg:grid-cols-4 lg:gap-x-16 xl:gap-x-30 pb-10 " style={{paddingTop:'2.5rem'}}>
+                    <div className="flex items-center justify-center flex-wrap grid-cols-1 gap-4 sm:grid-cols-1 sm:gap-2 md:gap-x-16 lg:grid-cols-4 lg:gap-x-16 xl:gap-x-30 pb-10 " style={{paddingTop:'2.5rem', maxWidth:'1155px'}}>
                       <div className="w-full pb-8">
                         <SearchInput
                           label="Search..."
