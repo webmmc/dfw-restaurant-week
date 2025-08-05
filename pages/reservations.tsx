@@ -658,8 +658,8 @@ export default function RestaurantFilter({
                     {/*<p className="text-center pt-3 font-bold">
                       Powered by Dallas Symphony Orchestra.
                     </p>*/}
-                    <div className="flex items-center justify-center flex-wrap grid-cols-1 gap-4 sm:grid-cols-1 sm:gap-2 md:gap-x-16 lg:grid-cols-4 lg:gap-x-16 xl:gap-x-30 pb-10 " style={{paddingTop:'2.5rem', maxWidth:'1155px'}}>
-                      <div className="w-full pb-8">
+                    <div className="flex items-center justify-center flex-wrap grid-cols-1 gap-4 sm:grid-cols-1 sm:gap-2 md:gap-x-16 lg:grid-cols-4 lg:gap-x-16 xl:gap-x-30 pb-10 " style={{paddingTop:'2.5rem', maxWidth:'1215px'}}>
+                      <div className="w-full pb-8 pl-8 pr-8">
                         <SearchInput
                           label="Search..."
                           handleSearch={(value: string) => {
@@ -668,7 +668,7 @@ export default function RestaurantFilter({
                           }}
                         />
                       </div>
-                      <div className="xl:w-60 lg:w-40 sm:w-64">
+                      <div className="xl:w-60 lg:w-40 sm:w-full sm:pl-8 sm:pr-8">
                         <MultiSelect
                           options={cuisinesOptions}
                           value={cuisinesSelected}
@@ -728,7 +728,7 @@ export default function RestaurantFilter({
                           overrideStrings={{ selectSomeItems: "Cuisines" }}
                         />
                       </div>
-                      <div className="xl:w-60 lg:w-40 sm:w-64">
+                      <div className="xl:w-60 lg:w-40 sm:w-full sm:pl-8 sm:pr-8">
                         <MultiSelect
                           options={curatedCollectionsOptions}
                           value={curatedSelected}
@@ -793,7 +793,7 @@ export default function RestaurantFilter({
                           }}
                         />
                       </div>
-                      <div className="xl:w-60 lg:w-40 sm:w-64">
+                      <div className="xl:w-60 lg:w-40 sm:w-full sm:pl-8 sm:pr-8">
                         <MultiSelect
                           options={locationsOptions}
                           value={locationsSelected}
@@ -853,7 +853,7 @@ export default function RestaurantFilter({
                           overrideStrings={{ selectSomeItems: "Locations" }}
                         />
                       </div>
-                      <div className="xl:w-60 lg:w-40 sm:w-64">
+                      <div className="xl:w-60 lg:w-40 sm:w-full sm:pl-8 sm:pr-8">
                         <MultiSelect
                           options={weeklyParticipatingOptions}
                           value={weeklyParticipatingSelected}
