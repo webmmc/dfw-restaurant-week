@@ -126,10 +126,10 @@ export const getStaticProps: GetStaticProps = async ({
   if (!data.restaurant?.advertisements?.midAd) {
     data.restaurant.advertisements.midAd = {
       adsFields: {
-        link: "https://www.audacy.com/krld",
+        link: "https://www.dallassymphony.org/ticket-packages/?utm_source=Audacy&utm_medium=DFWRW&utm_campaign=CYO",
         largeBanner: {
           mediaItemUrl:
-            "https://restaurantcms2.wpenginepowered.com/wp-content/uploads/2025/07/2025-DFWRW-RESTAURANT-LISTING-KRLD-AM-MIDDLE-AD-1230X420.jpg",
+            "https://restaurantcms2.wpenginepowered.com/wp-content/uploads/2025/08/DSO-RW-CYO-Ads-08-12-25_1230x420-copy.jpg",
         },
       },
     };
