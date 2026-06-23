@@ -30,6 +30,7 @@ export default function RestaurantFilter({
     cuisines,
     diningSelections,
     locations,
+    counties,
     weeksParticipating,
     curatedCollections,
     restaurants,
@@ -91,6 +92,7 @@ export default function RestaurantFilter({
     new Set<string>()
   );
   const [locationFilters, setLocationFilters] = useState(new Set<string>());
+  const [countyFilters, setCountyFilters] = useState(new Set<string>());
   const [fullListChecked, setFullListChecked] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [isExpanded, setExpanded] = useState(false);
@@ -102,17 +104,20 @@ export default function RestaurantFilter({
     useState([]);
   const [cuisinesSelected, setCuisinesSelected] = useState([]);
   const [locationsSelected, setLocationsSelected] = useState([]);
+  const [countiesSelected, setCountiesSelected] = useState([]);
   const [curatedSelected, setCuratedSelected] = useState([]);
   const [search, setSearch] = useState<string>("");
   const cuisineFiltersArray = Array.from(cuisineFilters);
   const curatedCollectionsFiltersArray = Array.from(curatedCollectionsFilters);
   const locationFiltersArray = Array.from(locationFilters);
+  const countyFiltersArray = Array.from(countyFilters);
 
   const taxonomyFiltersArray = Array.from(taxonomyFilters);
   const taxonomyOrFiltersArray = [
     ...curatedCollectionsFiltersArray,
     ...cuisineFiltersArray,
     ...locationFiltersArray,
+    ...countyFiltersArray,
   ];
 
   const selectedDiningSelections = diningSelections?.edges?.filter(
@@ -335,6 +340,15 @@ export default function RestaurantFilter({
     };
   });
 
+  const countiesOptions = counties?.edges?.map((item) => {
+    const { node } = item;
+    return {
+      label: node?.name,
+      value: node?.slug,
+      id: node?.id,
+    };
+  });
+
   const weeklyParticipatingOptions = weeksParticipating?.edges?.map((item) => {
     const { node } = item;
     return {
@@ -501,7 +515,7 @@ export default function RestaurantFilter({
                     >
                       MAP VIEW FILTER
                       <span className="hidden md:inline-block" style={{paddingLeft:'5px'}}>
-                        BY CUISINE, CURATED COLLECTION, LOCATION & WEEK
+                        BY CUISINE, CURATED COLLECTION, LOCATION, COUNTY & WEEK
                         PARTICIPATING
                       </span>
                     </div>
@@ -855,6 +869,66 @@ export default function RestaurantFilter({
                       </div>
                       <div className="xl:w-60 lg:w-40 w-full md:pl-0 md:pr-0 pl-8 pr-8">
                         <MultiSelect
+                          options={countiesOptions}
+                          value={countiesSelected}
+                          hasSelectAll={false}
+                          valueRenderer={(selected, _options) => {
+                            return selected.length
+                              ? `Counties: ${selected.map(
+                                  ({ label }) => label
+                                )}`
+                              : "";
+                          }}
+                          onChange={(values: any) => {
+                            if (!values.length) {
+                              const valuesToExclude: string[] =
+                                countiesOptions.map((item) => item.value);
+                              const ExcludedSet: Set<string> = new Set(
+                                Array.from(taxonomyFilters).filter(
+                                  (value) => !valuesToExclude.includes(value)
+                                )
+                              );
+                              setCountyFilters(new Set<string>());
+                              setTaxonomyFilters(ExcludedSet);
+                            } else {
+                              const newSelected = values.filter(
+                                (value: any) =>
+                                  !countiesSelected.some(
+                                    (county) => county.id === value.id
+                                  )
+                              );
+
+                              const deSelected = countiesSelected.filter(
+                                (value) =>
+                                  !values.some(
+                                    (county: any) => county.id === value.id
+                                  )
+                              );
+
+                              if (newSelected.length) {
+                                updateFilters(
+                                  true,
+                                  newSelected[0]?.value,
+                                  "county"
+                                );
+                              }
+
+                              if (deSelected.length) {
+                                updateFilters(
+                                  false,
+                                  deSelected[0]?.value,
+                                  "county"
+                                );
+                              }
+                            }
+                            setCountiesSelected(values);
+                          }}
+                          labelledBy="Counties"
+                          overrideStrings={{ selectSomeItems: "Counties" }}
+                        />
+                      </div>
+                      <div className="xl:w-60 lg:w-40 w-full md:pl-0 md:pr-0 pl-8 pr-8">
+                        <MultiSelect
                           options={weeklyParticipatingOptions}
                           value={weeklyParticipatingSelected}
                           valueRenderer={(selected, _options) => {
@@ -946,11 +1020,13 @@ export default function RestaurantFilter({
                             setWeeklyParticipatingSelected([]);
                             setCuisinesSelected([]);
                             setLocationsSelected([]);
+                            setCountiesSelected([]);
                             setCuratedSelected([]);
                             setSearchFilters([]);
                             setSearch("");
                             setCuisineFilters(new Set<string>());
                             setLocationFilters(new Set<string>());
+                            setCountyFilters(new Set<string>());
                             setCuratedCollectionsFilters(new Set<string>());
                           }}
                           onClick={handleCloseClick}
