@@ -682,7 +682,7 @@ export default function RestaurantFilter({
                           }}
                         />
                       </div>
-                      <div className="xl:w-60 lg:w-40 w-full md:pl-0 md:pr-0 pl-8 pr-8">
+                      <div className="xl:w-[11.75rem] lg:w-60 w-full md:pl-0 md:pr-0 pl-8 pr-8">
                         <MultiSelect
                           options={cuisinesOptions ?? []}
                           value={cuisinesSelected ?? []}
@@ -742,7 +742,7 @@ export default function RestaurantFilter({
                           overrideStrings={{ selectSomeItems: "Cuisines" }}
                         />
                       </div>
-                      <div className="xl:w-60 lg:w-40 w-full md:pl-0 md:pr-0 pl-8 pr-8">
+                      <div className="xl:w-[11.75rem] lg:w-60 w-full md:pl-0 md:pr-0 pl-8 pr-8">
                         <MultiSelect
                           options={curatedCollectionsOptions ?? []}
                           value={curatedSelected ?? []}
@@ -807,7 +807,7 @@ export default function RestaurantFilter({
                           }}
                         />
                       </div>
-                      <div className="xl:w-60 lg:w-40 w-full md:pl-0 md:pr-0 pl-8 pr-8">
+                      <div className="xl:w-[11.75rem] lg:w-60 w-full md:pl-0 md:pr-0 pl-8 pr-8">
                         <MultiSelect
                           options={locationsOptions ?? []}
                           value={locationsSelected ?? []}
@@ -867,7 +867,7 @@ export default function RestaurantFilter({
                           overrideStrings={{ selectSomeItems: "Locations" }}
                         />
                       </div>
-                      <div className="xl:w-60 lg:w-40 w-full md:pl-0 md:pr-0 pl-8 pr-8">
+                      <div className="xl:w-[11.75rem] lg:w-60 w-full md:pl-0 md:pr-0 pl-8 pr-8">
                         <MultiSelect
                           options={countiesOptions ?? []}
                           value={countiesSelected ?? []}
@@ -927,7 +927,7 @@ export default function RestaurantFilter({
                           overrideStrings={{ selectSomeItems: "Counties" }}
                         />
                       </div>
-                      <div className="xl:w-60 lg:w-40 w-full md:pl-0 md:pr-0 pl-8 pr-8">
+                      <div className="xl:w-[11.75rem] lg:w-60 w-full md:pl-0 md:pr-0 pl-8 pr-8">
                         <MultiSelect
                           options={weeklyParticipatingOptions ?? []}
                           value={weeklyParticipatingSelected ?? []}
