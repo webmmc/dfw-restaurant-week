@@ -165,6 +165,9 @@ export default function RestaurantFilter({
       if (filterType === "location") {
         setLocationFilters((prev) => new Set(prev).add(taxonomyFilter));
       }
+      if (filterType === "county") {
+        setCountyFilters((prev) => new Set(prev).add(taxonomyFilter));
+      }
       if (filterType === "curatedCollection") {
         setCuratedCollectionsFilters((prev) =>
           new Set(prev).add(taxonomyFilter)
@@ -191,6 +194,13 @@ export default function RestaurantFilter({
       }
       if (filterType === "location") {
         setLocationFilters((prev) => {
+          const next = new Set(prev);
+          next.delete(taxonomyFilter);
+          return next;
+        });
+      }
+      if (filterType === "county") {
+        setCountyFilters((prev) => {
           const next = new Set(prev);
           next.delete(taxonomyFilter);
           return next;
