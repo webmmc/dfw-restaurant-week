@@ -437,7 +437,7 @@ export default function RestaurantFilter({
                   </h3>
                 </div>
                 <div
-                  className={`grid grid-cols-2 gap-4 sm:grid-cols-2 sm:gap-4 lg:grid-cols-5 lg:gap-x-8 ${styles.selection_filter}`}
+                  className={`flex flex-wrap items-center justify-center grid-cols-2 gap-4 sm:grid-cols-2 sm:gap-4 lg:grid-cols-5 lg:gap-x-8 ${styles.selection_filter}`}
                 >
                   {diningSelections?.edges
                     ?.slice()
@@ -450,7 +450,7 @@ export default function RestaurantFilter({
                     ({ node: diningItem }, index) => {
                       return (
                         <div
-                          className={`form-check glisten larger-link ${styles.dining_item}`}
+                          className={`form-check glisten larger-link xl:w-[12rem] lg:w-60 w-full ${styles.dining_item}`}
                           key={diningItem.id}
                         >
                           <label
