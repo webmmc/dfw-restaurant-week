@@ -1432,6 +1432,15 @@ export async function getRestaurantFilterObjects(preview) {
                 }
               }
             }
+            counties {
+              edges {
+                node {
+                  id
+                  name
+                  slug
+                }
+              }
+            }
             weeksParticipating {
               edges {
                 node {
@@ -1525,6 +1534,15 @@ export async function getRestaurantFilterObjects(preview) {
                 mediaItemUrl
               }
             }
+          }
+        }
+      }
+      counties(first: 1000) {
+        edges {
+          node {
+            id
+            name
+            slug
           }
         }
       }
