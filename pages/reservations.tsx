@@ -329,7 +329,7 @@ export default function RestaurantFilter({
       value: node?.slug,
       id: node?.id,
     };
-  });
+  }) ?? [];
 
   const locationsOptions = locations?.edges?.map((item) => {
     const { node } = item;
@@ -338,7 +338,7 @@ export default function RestaurantFilter({
       value: node?.slug,
       id: node?.id,
     };
-  });
+  }) ?? [];
 
   const countiesOptions = counties?.edges?.map((item) => {
     const { node } = item;
@@ -347,7 +347,7 @@ export default function RestaurantFilter({
       value: node?.slug,
       id: node?.id,
     };
-  });
+  }) ?? [];
 
   const weeklyParticipatingOptions = weeksParticipating?.edges?.map((item) => {
     const { node } = item;
@@ -356,7 +356,7 @@ export default function RestaurantFilter({
       value: node?.slug,
       id: node?.id,
     };
-  });
+  }) ?? [];
 
   const curatedCollectionsOptions = curatedCollections?.edges?.map((item) => {
     const { node } = item;
@@ -365,7 +365,7 @@ export default function RestaurantFilter({
       value: node?.slug,
       id: node?.id,
     };
-  });
+  }) ?? [];
 
   const handleSearch = (value: string) => {
     const values = allRestaurants.filter((restaurant) =>
@@ -684,8 +684,8 @@ export default function RestaurantFilter({
                       </div>
                       <div className="xl:w-60 lg:w-40 w-full md:pl-0 md:pr-0 pl-8 pr-8">
                         <MultiSelect
-                          options={cuisinesOptions}
-                          value={cuisinesSelected}
+                          options={cuisinesOptions ?? []}
+                          value={cuisinesSelected ?? []}
                           hasSelectAll={false}
                           valueRenderer={(selected, _options) => {
                             return selected.length
@@ -744,8 +744,8 @@ export default function RestaurantFilter({
                       </div>
                       <div className="xl:w-60 lg:w-40 w-full md:pl-0 md:pr-0 pl-8 pr-8">
                         <MultiSelect
-                          options={curatedCollectionsOptions}
-                          value={curatedSelected}
+                          options={curatedCollectionsOptions ?? []}
+                          value={curatedSelected ?? []}
                           hasSelectAll={false}
                           valueRenderer={(selected, _options) => {
                             return selected.length
@@ -809,8 +809,8 @@ export default function RestaurantFilter({
                       </div>
                       <div className="xl:w-60 lg:w-40 w-full md:pl-0 md:pr-0 pl-8 pr-8">
                         <MultiSelect
-                          options={locationsOptions}
-                          value={locationsSelected}
+                          options={locationsOptions ?? []}
+                          value={locationsSelected ?? []}
                           hasSelectAll={false}
                           valueRenderer={(selected, _options) => {
                             return selected.length
@@ -869,8 +869,8 @@ export default function RestaurantFilter({
                       </div>
                       <div className="xl:w-60 lg:w-40 w-full md:pl-0 md:pr-0 pl-8 pr-8">
                         <MultiSelect
-                          options={countiesOptions}
-                          value={countiesSelected}
+                          options={countiesOptions ?? []}
+                          value={countiesSelected ?? []}
                           hasSelectAll={false}
                           valueRenderer={(selected, _options) => {
                             return selected.length
@@ -929,8 +929,8 @@ export default function RestaurantFilter({
                       </div>
                       <div className="xl:w-60 lg:w-40 w-full md:pl-0 md:pr-0 pl-8 pr-8">
                         <MultiSelect
-                          options={weeklyParticipatingOptions}
-                          value={weeklyParticipatingSelected}
+                          options={weeklyParticipatingOptions ?? []}
+                          value={weeklyParticipatingSelected ?? []}
                           valueRenderer={(selected, _options) => {
                             return selected.length
                               ? `Week Participating: ${selected.map(
