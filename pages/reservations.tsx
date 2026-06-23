@@ -439,7 +439,14 @@ export default function RestaurantFilter({
                 <div
                   className={`grid grid-cols-2 gap-4 sm:grid-cols-2 sm:gap-4 lg:grid-cols-5 lg:gap-x-8 ${styles.selection_filter}`}
                 >
-                  {diningSelections?.edges?.map(
+                  {diningSelections?.edges
+                    ?.slice()
+                    .sort((a, b) => {
+                      if (a.node.slug === "star-restaurant") return 1;
+                      if (b.node.slug === "star-restaurant") return -1;
+                      return 0;
+                    })
+                    .map(
                     ({ node: diningItem }, index) => {
                       return (
                         <div
