@@ -1501,7 +1501,6 @@ export async function getRestaurantFilterObjects(preview) {
                 mediaItemUrl
               }
             }
-            sortOrder
           }
         }
       }
