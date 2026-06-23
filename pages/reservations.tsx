@@ -450,7 +450,7 @@ export default function RestaurantFilter({
                     ({ node: diningItem }, index) => {
                       return (
                         <div
-                          className={`form-check glisten larger-link xl:w-[17rem] lg:w-60 w-1/2 ${styles.dining_item}`}
+                          className={`form-check glisten larger-link xl:w-[17rem] lg:w-60 w-[45%] ${styles.dining_item}`}
                           key={diningItem.id}
                         >
                           <label
