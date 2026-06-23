@@ -218,6 +218,9 @@ export default function RestaurantFilter({
       const restaurantLocations = node?.locations?.edges?.map(
         ({ node: taxonomy }) => taxonomy?.slug
       );
+      const restaurantCounties = node?.counties?.edges?.map(
+        ({ node: taxonomy }) => taxonomy?.slug
+      );
       const restaurantWeeksParticipating = node?.weeksParticipating?.edges?.map(
         ({ node: taxonomy }) => taxonomy?.slug
       );
@@ -250,6 +253,11 @@ export default function RestaurantFilter({
             (locationFiltersArray.length !== 0
               ? locationFiltersArray.some((taxonomy) =>
                   restaurantLocations.includes(taxonomy)
+                )
+              : true) &&
+            (locationFiltersArray.length !== 0
+              ? locationFiltersArray.some((taxonomy) =>
+                  restaurantCounties.includes(taxonomy)
                 )
               : true) &&
             (curatedCollectionsFiltersArray.length !== 0
