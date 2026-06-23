@@ -255,7 +255,7 @@ export default function RestaurantFilter({
                   restaurantLocations.includes(taxonomy)
                 )
               : true) &&
-            (locationFiltersArray.length !== 0
+            (countyFiltersArray.length !== 0
               ? locationFiltersArray.some((taxonomy) =>
                   restaurantCounties.includes(taxonomy)
                 )
