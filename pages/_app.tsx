@@ -28,9 +28,13 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     // Add current page class
     const pageClass =
-      router.pathname === "/"
-        ? "page-home"
-        : `page-${router.pathname.replace(/\//g, "-").replace(/^-/, "")}`;
+    router.asPath === "/"
+      ? "page-home"
+      : `page-${router.asPath
+          .split("?")[0] // Remove query string
+          .replace(/\/$/, "") // Remove trailing slash
+          .replace(/\//g, "-")
+          .replace(/^-/, "")}`;
 
     document.body.classList.add(pageClass);
   }, [router.pathname]);
