@@ -14,7 +14,7 @@ export default function SimplePageHero({ pageData, slugType= '' }) {
   const contactFormRef = useRef(null);
   return (
     <Container>
-      <section className="my-6 lg:my-12">
+      <section className="my-6 lg:my-12 top-section">
         <div className={(styles.hero || "") + " flex gap-x-4"}>
           <div
             id="hero-page"
