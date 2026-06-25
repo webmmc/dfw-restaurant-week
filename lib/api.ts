@@ -407,7 +407,7 @@ export async function getRestaurantAndMoreRestaurants(
           }
         }
       }
-      locations {
+      cities {
         edges {
           node {
             id
@@ -809,7 +809,7 @@ export async function getHomePageData(preview) {
                 restaurantFields {
                   shortSummary
                 }
-                locations {
+                cities {
                   edges {
                     node {
                       name
@@ -1044,7 +1044,7 @@ export async function getUberPageData(preview) {
                 restaurantFields {
                   shortSummary
                 }
-                locations {
+                cities {
                   edges {
                     node {
                       name
@@ -1423,7 +1423,7 @@ export async function getRestaurantFilterObjects(preview) {
                 }
               }
             }
-            locations {
+            cities {
               edges {
                 node {
                   id
@@ -1504,7 +1504,7 @@ export async function getRestaurantFilterObjects(preview) {
           }
         }
       }
-      locations(first: 1000) {
+      cities(first: 1000) {
         edges {
           node {
             id

@@ -29,7 +29,7 @@ export default function RestaurantFilter({
   restuarantFilterObjs: {
     cuisines,
     diningSelections,
-    locations,
+    cities,
     counties,
     weeksParticipating,
     curatedCollections,
@@ -45,7 +45,7 @@ export default function RestaurantFilter({
     ({ node }) => node?.slug
   );
   const cuisineTaxonomies = cuisines?.edges?.map(({ node }) => node?.slug);
-  const locationTaxonomies = locations?.edges?.map(({ node }) => node?.slug);
+  const citiesTaxonomies = cities?.edges?.map(({ node }) => node?.slug);
   const weekTaxonomies = weeksParticipating?.edges?.map(
     ({ node }) => node?.slug
   );
@@ -55,7 +55,7 @@ export default function RestaurantFilter({
   const combinedTaxonomies = [
     ...cuisineTaxonomies,
     ...diningSelectionTaxonomies,
-    ...locationTaxonomies,
+    ...cityTaxonomies,
     ...weekTaxonomies,
     ...curatedCollectionTaxonomies,
   ]; */
@@ -91,7 +91,7 @@ export default function RestaurantFilter({
   const [curatedCollectionsFilters, setCuratedCollectionsFilters] = useState(
     new Set<string>()
   );
-  const [locationFilters, setLocationFilters] = useState(new Set<string>());
+  const [cityFilters, setCityFilters] = useState(new Set<string>());
   const [countyFilters, setCountyFilters] = useState(new Set<string>());
   const [fullListChecked, setFullListChecked] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
@@ -103,20 +103,20 @@ export default function RestaurantFilter({
   const [weeklyParticipatingSelected, setWeeklyParticipatingSelected] =
     useState([]);
   const [cuisinesSelected, setCuisinesSelected] = useState([]);
-  const [locationsSelected, setLocationsSelected] = useState([]);
+  const [citiesSelected, setCitiesSelected] = useState([]);
   const [countiesSelected, setCountiesSelected] = useState([]);
   const [curatedSelected, setCuratedSelected] = useState([]);
   const [search, setSearch] = useState<string>("");
   const cuisineFiltersArray = Array.from(cuisineFilters);
   const curatedCollectionsFiltersArray = Array.from(curatedCollectionsFilters);
-  const locationFiltersArray = Array.from(locationFilters);
+  const cityFiltersArray = Array.from(cityFilters);
   const countyFiltersArray = Array.from(countyFilters);
 
   const taxonomyFiltersArray = Array.from(taxonomyFilters);
   const taxonomyOrFiltersArray = [
     ...curatedCollectionsFiltersArray,
     ...cuisineFiltersArray,
-    ...locationFiltersArray,
+    ...cityFiltersArray,
     ...countyFiltersArray,
   ];
 
@@ -128,18 +128,18 @@ export default function RestaurantFilter({
   const selectedDiningSelectionsLast =
     selectedDiningSelections[selectedDiningSelections.length - 1];
 
-  const locationsAndCuratedCollections = [
-    ...locations?.edges,
+  const citiesAndCuratedCollections = [
+    ...cities?.edges,
     ...curatedCollections?.edges,
   ];
 
-  const selectedLocationsOrCuratedCollections =
-    locationsAndCuratedCollections?.filter(({ node }) => {
+  const selectedCitiesOrCuratedCollections =
+    citiesAndCuratedCollections?.filter(({ node }) => {
       return taxonomyFiltersArray.includes(node?.slug);
     });
-  const selectedLocationsOrCuratedCollectionsLast =
-    selectedLocationsOrCuratedCollections[
-      selectedLocationsOrCuratedCollections.length - 1
+  const selectedCitiesOrCuratedCollectionsLast =
+    selectedCitiesOrCuratedCollections[
+      selectedCitiesOrCuratedCollections.length - 1
     ];
 
   function updateFilters(checked, taxonomyFilter, filterType = "") {
@@ -162,8 +162,8 @@ export default function RestaurantFilter({
       if (filterType === "cuisine") {
         setCuisineFilters((prev) => new Set(prev).add(taxonomyFilter));
       }
-      if (filterType === "location") {
-        setLocationFilters((prev) => new Set(prev).add(taxonomyFilter));
+      if (filterType === "city") {
+        setCityFilters((prev) => new Set(prev).add(taxonomyFilter));
       }
       if (filterType === "county") {
         setCountyFilters((prev) => new Set(prev).add(taxonomyFilter));
@@ -192,8 +192,8 @@ export default function RestaurantFilter({
           return next;
         });
       }
-      if (filterType === "location") {
-        setLocationFilters((prev) => {
+      if (filterType === "city") {
+        setCityFilters((prev) => {
           const next = new Set(prev);
           next.delete(taxonomyFilter);
           return next;
@@ -225,7 +225,7 @@ export default function RestaurantFilter({
       const restaurantDiningSelections = node?.diningSelections?.edges?.map(
         ({ node: taxonomy }) => taxonomy?.slug
       );
-      const restaurantLocations = node?.locations?.edges?.map(
+      const restaurantCities = node?.cities?.edges?.map(
         ({ node: taxonomy }) => taxonomy?.slug
       );
       const restaurantCounties = node?.counties?.edges?.map(
@@ -260,9 +260,9 @@ export default function RestaurantFilter({
                   restaurantCuisines.includes(taxonomy)
                 )
               : true) &&
-            (locationFiltersArray.length !== 0
-              ? locationFiltersArray.some((taxonomy) =>
-                  restaurantLocations.includes(taxonomy)
+            (cityFiltersArray.length !== 0
+              ? cityFiltersArray.some((taxonomy) =>
+                  restaurantCities.includes(taxonomy)
                 )
               : true) &&
             (countyFiltersArray.length !== 0
@@ -349,7 +349,7 @@ export default function RestaurantFilter({
     };
   }) ?? [];
 
-  const locationsOptions = locations?.edges?.map((item) => {
+  const citiesOptions = cities?.edges?.map((item) => {
     const { node } = item;
     return {
       label: node?.name,
@@ -507,10 +507,10 @@ export default function RestaurantFilter({
                   {/* <div className="p-2 hidden  not-md:block">
                     <button
                       className="w-full lg:w-auto site-btn site-btn--primary lg:px-8"
-                      // onClick={() => handleOpenClick("location")}
+                      // onClick={() => handleOpenClick("city")}
                       onClick={() => handleButtonClick()}
                     >
-                      Location{" "}
+                      city{" "}
                       <span className={styles.expand_arrow}>&#8679;</span>{" "}
                     </button>
                   </div>
@@ -540,7 +540,7 @@ export default function RestaurantFilter({
                     >
                       MAP VIEW FILTER
                       <span className="hidden md:inline-block" style={{paddingLeft:'5px'}}>
-                        BY CUISINE, CURATED COLLECTION, LOCATION, COUNTY & WEEK
+                        BY CUISINE, CURATED COLLECTION, CITY, COUNTY & WEEK
                         PARTICIPATING
                       </span>
                     </div>
@@ -834,12 +834,12 @@ export default function RestaurantFilter({
                       </div>
                       <div className="xl:w-[11.75rem] lg:w-60 w-full md:pl-0 md:pr-0 pl-8 pr-8">
                         <MultiSelect
-                          options={locationsOptions ?? []}
-                          value={locationsSelected ?? []}
+                          options={citiesOptions ?? []}
+                          value={citiesSelected ?? []}
                           hasSelectAll={false}
                           valueRenderer={(selected, _options) => {
                             return selected.length
-                              ? `Locations: ${selected.map(
+                              ? `Cities: ${selected.map(
                                   ({ label }) => label
                                 )}`
                               : "";
@@ -847,26 +847,26 @@ export default function RestaurantFilter({
                           onChange={(values: any) => {
                             if (!values.length) {
                               const valuesToExclude: string[] =
-                                locationsOptions.map((item) => item.value);
+                                citiesOptions.map((item) => item.value);
                               const ExcludedSet: Set<string> = new Set(
                                 Array.from(taxonomyFilters).filter(
                                   (value) => !valuesToExclude.includes(value)
                                 )
                               );
-                              setLocationFilters(new Set<string>());
+                              setCityFilters(new Set<string>());
                               setTaxonomyFilters(ExcludedSet);
                             } else {
                               const newSelected = values.filter(
                                 (value: any) =>
-                                  !locationsSelected.some(
-                                    (location) => location.id === value.id
+                                  !citiesSelected.some(
+                                    (city) => city.id === value.id
                                   )
                               );
 
-                              const deSelected = locationsSelected.filter(
+                              const deSelected = citiesSelected.filter(
                                 (value) =>
                                   !values.some(
-                                    (location: any) => location.id === value.id
+                                    (city: any) => city.id === value.id
                                   )
                               );
 
@@ -874,7 +874,7 @@ export default function RestaurantFilter({
                                 updateFilters(
                                   true,
                                   newSelected[0]?.value,
-                                  "location"
+                                  "city"
                                 );
                               }
 
@@ -882,14 +882,14 @@ export default function RestaurantFilter({
                                 updateFilters(
                                   false,
                                   deSelected[0]?.value,
-                                  "location"
+                                  "city"
                                 );
                               }
                             }
-                            setLocationsSelected(values);
+                            setCitiesSelected(values);
                           }}
-                          labelledBy="Locations"
-                          overrideStrings={{ selectSomeItems: "Locations" }}
+                          labelledBy="Cities"
+                          overrideStrings={{ selectSomeItems: "Cities" }}
                         />
                       </div>
                       <div className="xl:w-[11.75rem] lg:w-60 w-full md:pl-0 md:pr-0 pl-8 pr-8">
@@ -1044,13 +1044,13 @@ export default function RestaurantFilter({
                             updateFilters(e.target.checked, "full-list");
                             setWeeklyParticipatingSelected([]);
                             setCuisinesSelected([]);
-                            setLocationsSelected([]);
+                            setCitiesSelected([]);
                             setCountiesSelected([]);
                             setCuratedSelected([]);
                             setSearchFilters([]);
                             setSearch("");
                             setCuisineFilters(new Set<string>());
-                            setLocationFilters(new Set<string>());
+                            setCityFilters(new Set<string>());
                             setCountyFilters(new Set<string>());
                             setCuratedCollectionsFilters(new Set<string>());
                           }}
@@ -1074,10 +1074,10 @@ export default function RestaurantFilter({
                 {/* Restaurants */}
                 <div className="d-flex justify-content-evenly mt-8 ">
                   <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4 lg:gap-x-8">
-                    {selectedLocationsOrCuratedCollections.length > 0 && (
+                    {selectedCitiesOrCuratedCollections.length > 0 && (
                       <CardAd
                         adData={
-                          selectedLocationsOrCuratedCollectionsLast?.node
+                          selectedCitiesOrCuratedCollectionsLast?.node
                             ?.categoryAds?.categoryAd
                         }
                       />
@@ -1105,14 +1105,14 @@ export default function RestaurantFilter({
                             />
                           </div>
                           <div className={`mt-2 ${styles.dining_card_body}`}>
-                            {restaurantItem?.locations?.edges?.map(
+                            {restaurantItem?.cities?.edges?.map(
                               ({ node }, index) => (
                                 <span key={node?.id}>
                                   {node?.name}
-                                  {restaurantItem?.locations?.edges?.length -
+                                  {restaurantItem?.cities?.edges?.length -
                                     1 !==
                                     index &&
-                                  restaurantItem?.locations?.edges?.length > 1
+                                  restaurantItem?.cities?.edges?.length > 1
                                     ? ", "
                                     : ""}
                                 </span>
