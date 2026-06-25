@@ -349,22 +349,34 @@ export default function RestaurantFilter({
     };
   }) ?? [];
 
-  const citiesOptions = cities?.edges?.map((item) => {
-    const { node } = item;
-    return {
-      label: node?.name,
-      value: node?.slug,
-      id: node?.id,
-    };
+  const citiesOptions =
+    cities?.edges
+      ?.slice()
+      .sort((a, b) =>
+        a.node.name.localeCompare(b.node.name)
+      )
+      .map((item) => {
+        const { node } = item;
+        return {
+          label: node?.name,
+          value: node?.slug,
+          id: node?.id,
+        };
   }) ?? [];
 
-  const countiesOptions = counties?.edges?.map((item) => {
-    const { node } = item;
-    return {
-      label: node?.name,
-      value: node?.slug,
-      id: node?.id,
-    };
+  const countiesOptions =
+    counties?.edges
+      ?.slice()
+      .sort((a, b) =>
+        a.node.name.localeCompare(b.node.name)
+      )
+      .map((item) => {
+        const { node } = item;
+        return {
+          label: node?.name,
+          value: node?.slug,
+          id: node?.id,
+        };
   }) ?? [];
 
   const weeklyParticipatingOptions = weeksParticipating?.edges?.map((item) => {
