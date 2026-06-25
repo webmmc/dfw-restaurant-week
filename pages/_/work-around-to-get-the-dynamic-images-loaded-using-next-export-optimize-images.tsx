@@ -7,7 +7,7 @@ const WorkAroundToGetTheDynamicImagesLoadedUsingNextExportOptimizeImages = ({
   restuarantFilterObjs: {
     cuisines,
     diningSelections,
-    locations,
+    cities,
     weeksParticipating,
     curatedCollections,
     restaurants,
@@ -19,7 +19,7 @@ const WorkAroundToGetTheDynamicImagesLoadedUsingNextExportOptimizeImages = ({
 }) => {
   const combinedTaxonomies = [
     ...diningSelections?.edges,
-    ...locations?.edges,
+    ...cities?.edges,
     ...curatedCollections?.edges,
   ];
 
