@@ -1,5 +1,5 @@
 import type { AppProps } from "next/app";
-
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { ItineraryProvider } from "../context/ItineraryContext";
 import TagManager from "react-gtm-module";
@@ -28,3 +28,25 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export default MyApp;
+
+export default function App({ Component, pageProps }) {
+  const router = useRouter();
+
+  useEffect(() => {
+    // Remove previously-added route classes
+    document.body.className = document.body.className
+      .split(" ")
+      .filter((cls) => !cls.startsWith("page-"))
+      .join(" ");
+
+    // Add the current route as a body class
+    const pageClass =
+      router.pathname === "/"
+        ? "page-home"
+        : `page-${router.pathname.replace(/\//g, "-").replace(/^-/, "")}`;
+
+    document.body.classList.add(pageClass);
+  }, [router.pathname]);
+
+  return <Component {...pageProps} />;
+}
