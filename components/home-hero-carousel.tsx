@@ -13,7 +13,7 @@ export default function HomeHeroCarousel({
 }) {
   return (
     <Container>
-      <section className="my-6 lg:my-12">
+      <section className="my-6 lg:my-12 top-section">
         <div className={(styles.hero || "") + " flex"}>
           <div id="hero-carousel" className={(styles.carousel || "") + " "}>
             {/* React slider component */}
