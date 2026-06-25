@@ -28,7 +28,7 @@ export default function Post({
 }) {
   const router = useRouter();
 
-  const regionsArray = restaurant?.locations.edges.map(({ node }) => {
+  const regionsArray = restaurant?.cities.edges.map(({ node }) => {
     return node?.name;
   });
 
