@@ -114,17 +114,6 @@ export default function SimplePageHero({ pageData, slugType= '' }) {
       
         </div>
       </section>
-      <style jsx>{`
-        .page-contact .top-section .flex {
-          flex-direction: column-reverse;
-        }
-
-        .page-contact .top-section .flex .interior-charities {
-          width: 100%;
-          margin-top: 2rem;
-          margin-bottom: 5rem;
-        }
-      `}</style>
     </Container>
   );
 }
