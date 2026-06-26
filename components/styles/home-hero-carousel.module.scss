@@ -295,13 +295,13 @@ $gray: #b1b1b1;
 /* For Contact Page Specifically */
 .page-contact{
   .top-section{
-    .flex{
-      div{
-        &:last-of-type{
-          width: 100%;
-          margin-top: 2rem;
-          margin-bottom: 5rem;
-        }
+    .hero{
+      flex-direction: column-reverse;
+
+      .charities{
+        width: 100%;
+        margin-top: 2rem;
+        margin-bottom: 5rem;
       }
     }
   }
