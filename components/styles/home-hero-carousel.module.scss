@@ -291,18 +291,3 @@ $gray: #b1b1b1;
 .reservations__inner {
   flex-wrap: wrap;
 }
-
-/* For Contact Page Specifically */
-.page-contact{
-  .top-section{
-    .flex{
-      flex-direction: column-reverse;
-
-      .interior-charities{
-        width: 100%;
-        margin-top: 2rem;
-        margin-bottom: 5rem;
-      }
-    }
-  }
-}
