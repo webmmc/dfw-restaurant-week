@@ -53,7 +53,7 @@ export default function SimplePageHero({ pageData, slugType= '' }) {
               )}
             </div>
           </div>
-              { slugType === 'contact' &&     <div className={styles.charities || ""}>
+              { slugType === "contact" &&     <div className={`${styles.charities} interior-charities`}>
             <div
               className={`
               ${styles.charities__inner || ""} 
