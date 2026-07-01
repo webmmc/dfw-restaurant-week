@@ -340,13 +340,19 @@ export default function RestaurantFilter({
     setMapFilters(updatedData);
   };
 
-  const cuisinesOptions = cuisines?.edges?.map((item) => {
-    const { node } = item;
-    return {
-      label: node?.name,
-      value: node?.slug,
-      id: node?.id,
-    };
+  const cuisinesOptions =
+    cuisines?.edges
+      ?.slice()
+      .sort((a, b) =>
+        a.node.name.localeCompare(b.node.name)
+      )
+      .map((item) => {
+        const { node } = item;
+        return {
+          label: node?.name,
+          value: node?.slug,
+          id: node?.id,
+        };
   }) ?? [];
 
   const citiesOptions =
@@ -379,13 +385,19 @@ export default function RestaurantFilter({
         };
   }) ?? [];
 
-  const weeklyParticipatingOptions = weeksParticipating?.edges?.map((item) => {
-    const { node } = item;
-    return {
-      label: node?.name,
-      value: node?.slug,
-      id: node?.id,
-    };
+  const weeklyParticipatingOptions =
+    weeksParticipating?.edges
+      ?.slice()
+      .sort((a, b) =>
+        a.node.name.localeCompare(b.node.name)
+      )
+      .map((item) => {
+        const { node } = item;
+        return {
+          label: node?.name,
+          value: node?.slug,
+          id: node?.id,
+        };
   }) ?? [];
 
   const curatedCollectionsOptions = curatedCollections?.edges?.map((item) => {
