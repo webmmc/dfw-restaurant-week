@@ -27,6 +27,7 @@ import { CMS_NAME } from "../lib/constants";
 export default function Post({
   page,
   pages,
+  pageSlug,
   mainMenu,
   footerMenu,
   socialMenu,

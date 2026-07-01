@@ -20,27 +20,21 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   // Add page class to <body>
   useEffect(() => {
-    // Remove previous page-* classes
     document.body.className = document.body.className
       .split(" ")
       .filter((cls) => !cls.startsWith("page-"))
       .join(" ");
-
-    // Add current page class
-    let pageClass = "page-home";
-
-    if (pageProps.pageSlug) {
-      pageClass = `page-${pageProps.pageSlug}`;
-    } else if (router.pathname === "/") {
-      pageClass = "page-home";
-    } else {
-      pageClass = `page-${router.pathname
-        .replace(/\//g, "-")
-        .replace(/^-/, "")}`;
-    }
-
+  
+    const slug = pageProps.pageSlug;
+  
+    const pageClass = slug
+      ? `page-${slug}`
+      : router.pathname === "/"
+      ? "page-home"
+      : `page-${router.pathname.replace(/\//g, "-").replace(/^-/, "")}`;
+  
     document.body.classList.add(pageClass);
-  }, [router.pathname]);
+  }, [pageProps.pageSlug, router.asPath]);
 
   return (
     <>
