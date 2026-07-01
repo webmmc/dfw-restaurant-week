@@ -37,6 +37,7 @@ export default function SimplePageHero({ pageData, slugType= '' }) {
                     title="Hero Video"
                     width={1920}
                     height={1080}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
                   />
                 </div>
