@@ -33,7 +33,7 @@ export default function Post({
   preview,
 }) {
   const router = useRouter();
-  const { slug } = router.query;
+  const slug = page?.slug ?? "";
 
   const showSpecificWord = slug === "contact";
   const contactFormRef = useRef(null);
@@ -68,7 +68,7 @@ export default function Post({
         ) : (
           <>
             <PageAd adData={page?.advertisements?.topAd} />
-            <SimplePageHero slugType={slug.toString()} pageData={pageData} />
+            <SimplePageHero slugType={slug} pageData={pageData} />
             <PageContent content={page?.content} />
             <div>
               {showSpecificWord && (
@@ -137,6 +137,7 @@ export const getStaticProps: GetStaticProps = async ({
       preview,
       page: data.page,
       pages: data.pages,
+      pageSlug: data.page?.slug ?? "",
       mainMenu: data?.mainMenu?.nodes[0],
       footerMenu: data?.footerMenu?.nodes[0],
       socialMenu: data?.socialMenu?.nodes[0],

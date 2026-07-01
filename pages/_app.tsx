@@ -27,14 +27,17 @@ function MyApp({ Component, pageProps }: AppProps) {
       .join(" ");
 
     // Add current page class
-    const pageClass =
-    router.asPath === "/"
-      ? "page-home"
-      : `page-${router.asPath
-          .split("?")[0] // Remove query string
-          .replace(/\/$/, "") // Remove trailing slash
-          .replace(/\//g, "-")
-          .replace(/^-/, "")}`;
+    let pageClass = "page-home";
+
+    if (pageProps.pageSlug) {
+      pageClass = `page-${pageProps.pageSlug}`;
+    } else if (router.pathname === "/") {
+      pageClass = "page-home";
+    } else {
+      pageClass = `page-${router.pathname
+        .replace(/\//g, "-")
+        .replace(/^-/, "")}`;
+    }
 
     document.body.classList.add(pageClass);
   }, [router.pathname]);
