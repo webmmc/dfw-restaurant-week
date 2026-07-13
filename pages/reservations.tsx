@@ -128,6 +128,14 @@ export default function RestaurantFilter({
   const selectedDiningSelectionsLast =
     selectedDiningSelections[selectedDiningSelections.length - 1];
 
+  const diningSelectionOrder = {
+    "lunch-24": 1,
+    "dinner-39": 2,
+    "dinner-49": 3,
+    "signature-experience-99": 4,
+    "weekend-brunch-29": 5,
+  };
+
   const citiesAndCuratedCollections = [
     ...cities?.edges,
     ...curatedCollections?.edges,
@@ -467,9 +475,16 @@ export default function RestaurantFilter({
                   {diningSelections?.edges
                     ?.slice()
                     .sort((a, b) => {
+                      // Always keep Star Restaurant last
                       if (a.node.slug === "star-restaurant") return 1;
                       if (b.node.slug === "star-restaurant") return -1;
-                      return 0;
+                    
+                      const aOrder =
+                        diningSelectionOrder[a.node.slug] ?? Number.MAX_SAFE_INTEGER;
+                      const bOrder =
+                        diningSelectionOrder[b.node.slug] ?? Number.MAX_SAFE_INTEGER;
+                    
+                      return aOrder - bOrder;
                     })
                     .map(
                     ({ node: diningItem }, index) => {
