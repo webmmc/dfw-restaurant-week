@@ -134,7 +134,7 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
       link: "https://www.ubereats.com/uber-one",
       largeBanner: {
         mediaItemUrl:
-          "https://restaurantcms2.wpenginepowered.com/wp-content/uploads/2025/07/2025-DFWRW-UBER-EATS-CAMPAIGN-VERSION-3-1230X420.jpg",
+          "https://restaurantcms2.wpenginepowered.com/wp-content/uploads/2025/07/2026-DFWRW-UBER-EATS-CAMPAIGN-VERSION-1-1230X420.jpg",
       },
     },
   };
