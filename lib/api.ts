@@ -21,8 +21,12 @@ async function fetchAPI(query = "", { variables }: Record<string, any> = {}) {
 
   const json = await res.json();
   if (json.errors) {
-    console.error(json.errors);
-    throw new Error("Failed to fetch API");
+    console.error("GraphQL Errors:");
+    console.error(JSON.stringify(json.errors, null, 2));
+  
+    throw new Error(
+      JSON.stringify(json.errors, null, 2)
+    );
   }
   return json.data;
 }
