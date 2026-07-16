@@ -162,7 +162,7 @@ export default function Header({ mainMenu, socialMenu, rwLogo, audacyIcon }) {
           </div>
 
           {/* Button to toggle itinerary panel */}
-          {/* <div className="flex items-end mx-4 my-2 sm:my-0  justify-center sm:justify-end">
+          <div className="flex items-end mx-4 my-2 sm:my-0  justify-center sm:justify-end">
             <button
               className={classNames(
                 "site-btn site-btn--primary",
@@ -190,7 +190,7 @@ export default function Header({ mainMenu, socialMenu, rwLogo, audacyIcon }) {
               </svg>
               Itinerary
             </button>
-          </div> */}
+          </div>
         </div>
       </nav>
       {/* Sliding itinerary panel */}
