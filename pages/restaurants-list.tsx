@@ -83,7 +83,6 @@ export default function RestaurantList({
       >
         <Head>
           <title>{`DFW Restaurants List`}</title>
-          <meta name="robots" content="noindex, follow" />
         </Head>
         <Main>
           <PageAd adData={topAd} />

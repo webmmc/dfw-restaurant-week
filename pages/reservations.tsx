@@ -436,7 +436,6 @@ export default function RestaurantFilter({
       >
         <Head>
           <title>{`DFW Restaurant Week Reservations`}</title>
-          <meta name="robots" content="noindex, follow" />
         </Head>
         <Main>
           <PageAd adData={topAd} />
