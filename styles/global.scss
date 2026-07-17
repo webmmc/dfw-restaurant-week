@@ -543,6 +543,7 @@ hr {
 /* Contact Page Hero Section */
 .page-contact .top-section .flex {
   flex-direction: column-reverse;
+  display: flex !important;
 }
 
 .page-contact .top-section .flex .interior-charities {
