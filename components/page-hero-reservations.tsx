@@ -53,7 +53,7 @@ export default function HomeHeroCarousel({ restaurantData }) {
               <>
                 <h3 className="uppercase smaller-line-height mb-6">
                   <span className="text-red">Get updates on</span> DFW
-                  Restaurant Week
+                  Restaurant Week And Receive a Fourth Course Certificate
                 </h3>
                 <div className={`${styles.contactFormEmbed || ""}`}>
                   <SignupForm

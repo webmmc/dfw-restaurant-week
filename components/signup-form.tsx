@@ -155,7 +155,7 @@ const SignupForm = ({ onSubmit }: Props, ref) => {
             disabled={isSubmitting}
             className="site-btn site-btn--primary"
           >
-            Get updates
+            Submit
           </button>
         </form>
       </div>
